@@ -22,8 +22,9 @@ public class EspritRestau  extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("login_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Authentificate");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

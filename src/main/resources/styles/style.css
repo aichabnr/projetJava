@@ -1,0 +1,88 @@
+/* Apply to a specific class or element */
+#tab {
+    -fx-border-color: black; /* Border color */
+    -fx-border-width: 2px;   /* Border width */
+    -fx-border-style: solid; /* Border style */
+}
+
+/* Example: Apply to all nodes of a specific type, e.g., Button */
+#loginbtn {
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+}
+/* Apply to the TableView */
+.table-view {
+    -fx-background-color: #f4f4f4; /* Background color */
+    -fx-border-color: black; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-style: solid; /* Border style */
+    -fx-padding: 10px; /* Padding around the table */
+}
+
+/* Style for table header */
+.table-view .column-header {
+    -fx-background-color: #4CAF50; /* Header background color */
+    -fx-text-fill: white; /* Header text color */
+    -fx-font-weight: bold; /* Font weight */
+}
+
+/* Style for table rows */
+.table-view .table-row-cell {
+    -fx-background-color: white; /* Row background color */
+    -fx-border-color: #dcdcdc; /* Border color for each row */
+    -fx-border-width: 0 0 1px 0; /* Border on the bottom of each row */
+}
+
+/* Style for table cells */
+.table-view .table-cell {
+    -fx-padding: 5px; /* Cell padding */
+    -fx-font-size: 14px; /* Font size */
+    -fx-border-color: transparent; /* Border around cells */
+}
+
+/* Style for table row on hover */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e9e9e9; /* Row hover background color */
+}
+
+/* Style for selected row */
+.table-view .table-row-cell:focused {
+    -fx-background-color: #d4e9d4; /* Selected row background color */
+    -fx-text-fill: #2d2d2d; /* Text color for selected row */
+}
+
+
+/* Default Button Style */
+#loginbtn {
+    -fx-background-color: #850f36; /* Button background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-padding: 5 10 5 10; /* Smaller padding for a smaller button */
+    -fx-border-radius: 3px; /* Smaller rounded corners */
+    -fx-font-size: 12px; /* Smaller font size */
+    -fx-cursor: hand; /* Cursor on hover */
+    -fx-transition: background-color 0.3s ease; /* Transition for background change */
+    -fx-min-width: 50px; /* Minimum width of the button */
+    -fx-min-height: 20px; /* Minimum height of the button */
+}
+
+/* Hover Effect */
+#loginbtn:hover {
+    -fx-background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Pressed (Active) Effect */
+#loginbtn:pressed {
+    -fx-background-color: #003366; /* Even darker blue when pressed */
+}
+
+/* Focused Button (Optional) */
+#loginbtn:focused {
+    -fx-border-color: #ffd700; /* Yellow border on focus (if needed) */
+}
+
+.error-border {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
