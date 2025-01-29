@@ -1,4 +1,8 @@
-package Entites;
+package com.esprit.espritrestau.entities;
+
+import com.esprit.espritrestau.entities.TPA ;
+import com.esprit.espritrestau.entities.Personne ;
+
 
 public class Consommateur extends Personne{
 private TPA type;

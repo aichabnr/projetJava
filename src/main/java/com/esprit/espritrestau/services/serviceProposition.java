@@ -1,8 +1,9 @@
-package Services;
+package com.esprit.espritrestau.services;
 
-import Entites.Proposition;
-import Entites.Reclamation;
-import Utils.DataSource;
+
+
+import com.esprit.espritrestau.entities.Proposition;
+import com.esprit.espritrestau.utils.DatabaseConnection;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ import java.util.List;
 
 public class serviceProposition  implements  IService <Proposition>{
 
-    private Connection con = DataSource.getInstance().getConn();
+    private final Connection con = DatabaseConnection.getConnection() ;
     private Statement stmt;
+
     @Override
     public void ajouter(Proposition prop) {
         String req = "INSERT INTO proposition` (`id`, `desc`, `objet`, `idConsomateur`) VALUES (NULL, ?, ?, ?)";

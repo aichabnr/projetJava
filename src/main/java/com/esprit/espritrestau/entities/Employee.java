@@ -1,4 +1,5 @@
-package Entites;
+package com.esprit.espritrestau.entities;
+import com.esprit.espritrestau.entities.Personne ;
 
 public class Employee extends Personne{
     private String post;

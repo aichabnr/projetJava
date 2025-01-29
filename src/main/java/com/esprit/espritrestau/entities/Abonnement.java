@@ -1,6 +1,8 @@
-package Entites;
+package com.esprit.espritrestau.entities;
 
 import java.util.Date;
+import com.esprit.espritrestau.entities.TPA ;
+
 
 public class Abonnement {
 
@@ -8,17 +10,28 @@ public class Abonnement {
     private Date dateDebut;
     private Date dateFin;
     private double solde;
-    private TPA type;
     private int idConsomateur;
-    public Abonnement() {
+
+    public Abonnement(){
 
     }
-    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, TPA type, int idConsomateur) {
+
+    @Override
+    public String toString() {
+        return "Abonnement{" +
+                "id=" + id +
+                ", dateDebut=" + dateDebut +
+                ", dateFin=" + dateFin +
+                ", solde=" + solde +
+                ", idConsomateur=" + idConsomateur +
+                '}';
+    }
+
+    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, int idConsomateur) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.solde = solde;
-        this.type = type;
         this.idConsomateur = idConsomateur;
     }
 
@@ -52,14 +65,6 @@ public class Abonnement {
 
     public void setSolde(double solde) {
         this.solde = solde;
-    }
-
-    public TPA getType() {
-        return type;
-    }
-
-    public void setType(TPA type) {
-        this.type = type;
     }
 
     public int getIdConsomateur() {

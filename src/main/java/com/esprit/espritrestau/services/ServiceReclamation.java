@@ -1,14 +1,16 @@
-package Services;
+package com.esprit.espritrestau.services;
 
-import Entites.Reclamation;
-import Utils.DataSource;
+
+import com.esprit.espritrestau.utils.DatabaseConnection;
+import com.esprit.espritrestau.entities.Reclamation;
+
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceReclamation implements IService <Reclamation>{
-    private Connection con = DataSource.getInstance().getConn();
+    private Connection con = DatabaseConnection.getConnection();
     private Statement stmt;
     @Override
     public void ajouter(Reclamation rec) throws SQLException {

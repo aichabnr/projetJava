@@ -1,6 +1,5 @@
-package Services;
+package com.esprit.espritrestau.services;
 
-import Entites.Reclamation;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Entites;
+package com.esprit.espritrestau.entities;
 
 public class Personne {
     private int id;
