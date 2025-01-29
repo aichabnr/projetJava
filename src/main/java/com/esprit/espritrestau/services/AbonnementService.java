@@ -11,7 +11,7 @@
 
         private final Connection connection;
 
-        public AbonnementService() {
+        public AbonnementService() throws SQLException {
             this.connection = DatabaseConnection.getConnection();
         }
 

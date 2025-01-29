@@ -14,6 +14,9 @@ public class serviceProposition  implements  IService <Proposition>{
     private final Connection con = DatabaseConnection.getConnection() ;
     private Statement stmt;
 
+    public serviceProposition() throws SQLException {
+    }
+
     @Override
     public void ajouter(Proposition prop) {
         String req = "INSERT INTO proposition` (`id`, `desc`, `objet`, `idConsomateur`) VALUES (NULL, ?, ?, ?)";

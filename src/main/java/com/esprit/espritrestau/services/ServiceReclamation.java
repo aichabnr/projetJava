@@ -12,6 +12,10 @@ import java.util.List;
 public class ServiceReclamation implements IService <Reclamation>{
     private Connection con = DatabaseConnection.getConnection();
     private Statement stmt;
+
+    public ServiceReclamation() throws SQLException {
+    }
+
     @Override
     public void ajouter(Reclamation rec) throws SQLException {
         String req = "INSERT INTO `reclamation` (`id`, `date`, `desc`, `objet`, `idConsomateur`) VALUES (NULL, ?, ?, ?, ?)";

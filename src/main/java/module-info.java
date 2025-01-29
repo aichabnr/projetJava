@@ -9,5 +9,7 @@ module com.esprit.espritrestau {
 
     opens com.esprit.espritrestau to javafx.fxml;
     opens com.esprit.espritrestau.controllers to javafx.fxml;
+    opens com.esprit.espritrestau.entities to javafx.base;
+
     exports com.esprit.espritrestau;
 }
