@@ -12,4 +12,6 @@ public interface IAbonnement <T>{
     void updateAbonnement(T abonnement);
 
     void deleteAbonnement(int id);
+
+    void consommerRepas(int abonnementId,int repasId) ;
 }
