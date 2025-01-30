@@ -1,10 +1,5 @@
 package com.esprit.espritrestau;
 
-import com.esprit.espritrestau.entities.Abonnement;
-import com.esprit.espritrestau.entities.Consommateur;
-import com.esprit.espritrestau.entities.TPA;
-import com.esprit.espritrestau.services.AbonnementService;
-import com.esprit.espritrestau.utils.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.List;
 
 public class EspritRestau  extends Application {
 

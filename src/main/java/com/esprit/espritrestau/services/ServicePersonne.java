@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServicePersonne implements IService<Personne> {
-    private Connection con = DataSource.getInstance().getConn();
+    private Connection con = DataSource.getConnection();
     private Statement st;
 
-    public ServicePersonne() {
+    public ServicePersonne() throws SQLException {
         try {
             st = con.createStatement();
         } catch (SQLException e) {
@@ -45,6 +45,11 @@ public class ServicePersonne implements IService<Personne> {
             }
             pre.executeUpdate();
         }
+    }
+
+    @Override
+    public Boolean supprimer(int id) throws SQLException {
+        return null;
     }
 
     @Override
@@ -93,6 +98,11 @@ public class ServicePersonne implements IService<Personne> {
             list.add(mapPersonne(rs));
         }
         return list;
+    }
+
+    @Override
+    public List<Personne> getByIdConsomateur(int idConsomateur) {
+        return List.of();
     }
 
     @Override

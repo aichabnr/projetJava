@@ -2,7 +2,7 @@
 
     import com.esprit.espritrestau.entities.Abonnement;
     import com.esprit.espritrestau.exceptions.AbonnementAlreadyExistsException;
-    import com.esprit.espritrestau.utils.DatabaseConnection;
+    import com.esprit.espritrestau.utils.DataSource;
     import java.sql.*;
     import java.util.ArrayList;
     import java.util.List;
@@ -12,36 +12,31 @@
         private final Connection connection;
 
         public AbonnementService() throws SQLException {
-            this.connection = DatabaseConnection.getConnection();
+            this.connection = DataSource.getConnection();
         }
 
         @Override
         public void addAbonnement(Abonnement abonnement) throws AbonnementAlreadyExistsException {
             String checkQuery = "SELECT COUNT(*) FROM abonnement WHERE id = ?";
-            String insertQuery = "INSERT INTO abonnement (id, dateDebut, dateFin, solde, idConsomateur) VALUES (?, ?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO abonnement (dateDebut, dateFin, solde, idConsomateur) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement checkStatement = connection.prepareStatement(checkQuery)) {
+                // No need to check ID for insert as it is auto-generated
                 checkStatement.setInt(1, abonnement.getId());
                 ResultSet resultSet = checkStatement.executeQuery();
 
-                if (resultSet.next() && resultSet.getInt(1) > 0) {
-
-                    throw new AbonnementAlreadyExistsException("Abonnement with ID " + abonnement.getId() + " already exists.");
-                }
+                // No check for existing ID, just insert the new record
                 try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
-                    insertStatement.setInt(1, abonnement.getId());
-                    insertStatement.setDate(2, new java.sql.Date(abonnement.getDateDebut().getTime()));
-                    insertStatement.setDate(3, new java.sql.Date(abonnement.getDateFin().getTime()));
-                    insertStatement.setDouble(4, abonnement.getSolde());
-                    insertStatement.setInt(5, abonnement.getIdConsomateur());
+                    insertStatement.setDate(1, new java.sql.Date(abonnement.getDateDebut().getTime()));
+                    insertStatement.setDate(2, new java.sql.Date(abonnement.getDateFin().getTime()));
+                    insertStatement.setDouble(3, abonnement.getSolde());
+                    insertStatement.setInt(4, abonnement.getIdConsomateur());
                     insertStatement.executeUpdate();
                     System.out.println("Abonnement added: " + abonnement);
                 }
 
             } catch (SQLException e) {
                 e.printStackTrace();
-            } catch (AbonnementAlreadyExistsException e) {
-                System.err.println(e.getMessage());  // Handle custom exception here
             }
         }
 
