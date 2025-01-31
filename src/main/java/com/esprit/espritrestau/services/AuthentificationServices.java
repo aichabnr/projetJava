@@ -1,6 +1,6 @@
 package com.esprit.espritrestau.services;
 
-import com.esprit.espritrestau.utils.DataSource;
+import com.esprit.espritrestau.utils.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +22,7 @@ public class AuthentificationServices implements IAuthentification {
             return false;
         }
 
-        try (Connection connection = DataSource.getConnection();
+        try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
             statement.setString(1, email);

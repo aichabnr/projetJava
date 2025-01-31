@@ -1,8 +1,7 @@
 package com.esprit.espritrestau.services;
 
 
-import com.esprit.espritrestau.entities.Personne;
-import com.esprit.espritrestau.utils.DataSource;
+import com.esprit.espritrestau.utils.DatabaseConnection;
 import com.esprit.espritrestau.entities.Reclamation;
 
 
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceReclamation implements IService <Reclamation>{
-    private Connection con = DataSource.getConnection();
+    private Connection con = DatabaseConnection.getConnection();
     private Statement stmt;
 
     public ServiceReclamation() throws SQLException {
@@ -46,11 +45,6 @@ public class ServiceReclamation implements IService <Reclamation>{
             e.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    public void supprimer(Personne personne) throws SQLException {
-
     }
 
 

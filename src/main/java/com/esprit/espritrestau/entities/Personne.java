@@ -1,23 +1,25 @@
 package com.esprit.espritrestau.entities;
 
-public class Personne {
+import java.io.Serializable;
+
+public class Personne implements Serializable {
     private int id;
     private String nom;
     private String prenom;
-    private int tel;
+    private String  tel;
 
     private  String password;
     public Personne() {
 
     }
-    public Personne(int id, String nom, String prenom, int tel) {
+    public Personne(int id, String nom, String prenom, String  tel) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
     }
 
-    public Personne(int id, String nom, String prenom, int tel, String password) {
+    public Personne(int id, String nom, String prenom, String  tel, String password) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -49,11 +51,11 @@ public class Personne {
         this.prenom = prenom;
     }
 
-    public int getTel() {
+    public String  getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String  tel) {
         this.tel = tel;
     }
 

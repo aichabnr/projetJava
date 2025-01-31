@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
-import java.util.Objects;
 
 public class EspritRestau  extends Application {
 
@@ -22,10 +21,9 @@ public class EspritRestau  extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("consommateur.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("login_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("gestion consommateur");
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
+        stage.setTitle("Authentificate");
         stage.getIcons().add(new Image("file:src/main/resources/images/logo.png")) ;
         stage.setScene(scene);
         stage.setResizable(false);

@@ -10,16 +10,22 @@ private TPA type;
     public Consommateur(TPA type) {
         this.type = type;
     }
+    public Consommateur(int id, String nom, String prenom, String  tel, String password) {
+        super(id, nom, prenom, tel, password);
+    }
 
-    public Consommateur(int id, String nom, String prenom, int tel, String password, TPA type) {
+
+    public Consommateur(int id, String nom, String prenom, String  tel, String password, TPA type) {
         super(id, nom, prenom, tel, password);
         this.type = type;
     }
 
-    public Consommateur(int id, String nom, String prenom, int tel, TPA type) {
+    public Consommateur(int id, String nom, String prenom, String  tel, TPA type) {
         super(id, nom, prenom, tel);
         this.type = type;
     }
+
+
 
     public TPA getType() {
         return type;
