@@ -12,7 +12,7 @@ public class DataSource {
     private  String pass = "";
     private static DataSource data;
 
-     DataSource() {
+     public DataSource() {
 
         try {
             conn= DriverManager.getConnection(url,user,pass);

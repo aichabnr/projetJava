@@ -14,7 +14,9 @@ public class serviceProposition  implements  IService <Proposition>{
     private Statement stmt;
     @Override
     public void ajouter(Proposition prop) {
-        String req = "INSERT INTO proposition` (`id`, `desc`, `objet`, `idConsomateur`) VALUES (NULL, ?, ?, ?)";
+
+        String req = "INSERT INTO `proposition` (`id`, `description`, `objet`, `idConsomateur`) VALUES (NULL, ?, ?, ?)";
+
         try (PreparedStatement preparedStatement = con.prepareStatement(req)) {
             preparedStatement.setString(1, prop.getDescription());
             preparedStatement.setString(2, prop.getObjet());
@@ -50,7 +52,7 @@ public class serviceProposition  implements  IService <Proposition>{
 
     @Override
     public void update(Proposition proposition) throws SQLException {
-        String sql = "UPDATE proposition SET `desc` = ?, `objet` = ?, `idConsomateur` = ? WHERE `id` = ?";
+        String sql = "UPDATE proposition SET `description` = ?, `objet` = ?, `idConsomateur` = ? WHERE `id` = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, proposition.getDescription());
             stmt.setString(2, proposition.getObjet());
@@ -78,7 +80,7 @@ public class serviceProposition  implements  IService <Proposition>{
                 if (rs.next()) {
                     Proposition prop = new Proposition();
                     prop.setId(rs.getInt("id"));
-                    prop.setDescription(rs.getString("desc"));
+                    prop.setDescription(rs.getString("description"));
                     prop.setObjet(rs.getString("objet"));
                     prop.setIdConsomateur(rs.getInt("idConsomateur"));
                     return prop;
@@ -104,7 +106,7 @@ public class serviceProposition  implements  IService <Proposition>{
             while (rs.next()) {
                 Proposition proposition = new Proposition();
                 proposition.setId(rs.getInt("id"));
-                proposition.setDescription(rs.getString("desc"));
+                proposition.setDescription(rs.getString("description"));
                 proposition.setObjet(rs.getString("objet"));
                 proposition.setIdConsomateur(rs.getInt("idConsomateur"));
                 propositions.add(proposition);
@@ -127,7 +129,7 @@ public class serviceProposition  implements  IService <Proposition>{
                 while (rs.next()) {
                     Proposition proposition = new Proposition();
                     proposition.setId(rs.getInt("id"));
-                    proposition.setDescription(rs.getString("desc"));
+                    proposition.setDescription(rs.getString("description"));
                     proposition.setObjet(rs.getString("objet"));
                     proposition.setIdConsomateur(rs.getInt("idConsomateur"));
                     propositions.add(proposition);

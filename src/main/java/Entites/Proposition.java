@@ -14,6 +14,12 @@ public class Proposition {
         this.idConsomateur = idConsomateur;
     }
 
+    public Proposition(String description, String objet, int idConsomateur) {
+        this.description = description;
+        this.objet = objet;
+        this.idConsomateur = idConsomateur;
+    }
+
     public Proposition() {
 
     }

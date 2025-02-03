@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Reclamation {
     private int id;
-    private String date;
+    private Date date;
     private String description;
     private String objet;
     private int idConsomateur;
@@ -14,14 +14,19 @@ public class Reclamation {
 
     }
 
-    public Reclamation(int id, String date, String description, String objet, int idConsomateur) {
+    public Reclamation(int id, Date date, String description, String objet, int idConsomateur) {
         this.id = id;
         this.date = date;
         this.description = description;
         this.objet = objet;
         this.idConsomateur = idConsomateur;
     }
-
+    public Reclamation( Date date, String description, String objet, int idConsomateur) {
+        this.date = date;
+        this.description = description;
+        this.objet = objet;
+        this.idConsomateur = idConsomateur;
+    }
     public int getId() {
         return id;
     }
@@ -30,7 +35,7 @@ public class Reclamation {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -38,7 +43,7 @@ public class Reclamation {
         this.idConsomateur = idConsomateur;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
