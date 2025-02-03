@@ -28,4 +28,8 @@ private TPA type;
     public void setType(TPA type) {
         this.type = type;
     }
+    @Override
+    public String toString() {
+        return getNom() + " " + getPrenom();
+    }
 }

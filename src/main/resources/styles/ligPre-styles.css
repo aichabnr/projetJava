@@ -1,0 +1,79 @@
+/* Light red-themed styles for JavaFX components */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-base: white;
+    -fx-background: white;
+    -fx-text-fill: black;
+}
+
+/* Button Style */
+.button {
+    -fx-background-color: linear-gradient(#ff6666, #ff4d4d);
+    -fx-text-fill: white;
+    -fx-border-color: #ff9999;
+    -fx-border-width: 1px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#ff4d4d, #ff1a1a);
+}
+
+.button:pressed {
+    -fx-background-color: #e60000;
+}
+
+/* ComboBox Style */
+.combo-box {
+    -fx-background-color: #ffe6e6;
+    -fx-border-color: #ff6666;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #ffe6e6;
+    -fx-text-fill: black;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #ffcccc;
+}
+
+/* TableView Style */
+.table-view {
+    -fx-background-color: #ffe6e6;
+    -fx-border-color: #ff6666;
+    -fx-table-cell-border-color: #ff9999;
+    -fx-padding: 10px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #ff4d4d;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #ffcccc;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffe6e6;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #ff6666;
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: black;
+    -fx-alignment: CENTER;
+}

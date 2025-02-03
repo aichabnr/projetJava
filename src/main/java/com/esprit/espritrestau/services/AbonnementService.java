@@ -21,11 +21,9 @@
             String insertQuery = "INSERT INTO abonnement (dateDebut, dateFin, solde, idConsomateur) VALUES (?, ?, ?, ?)";
 
             try (PreparedStatement checkStatement = connection.prepareStatement(checkQuery)) {
-                // No need to check ID for insert as it is auto-generated
                 checkStatement.setInt(1, abonnement.getId());
                 ResultSet resultSet = checkStatement.executeQuery();
 
-                // No check for existing ID, just insert the new record
                 try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                     insertStatement.setDate(1, new java.sql.Date(abonnement.getDateDebut().getTime()));
                     insertStatement.setDate(2, new java.sql.Date(abonnement.getDateFin().getTime()));
