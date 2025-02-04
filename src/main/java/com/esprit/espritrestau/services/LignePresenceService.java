@@ -1,6 +1,8 @@
 package com.esprit.espritrestau.services;
 
 import com.esprit.espritrestau.entities.Presence;
+import com.esprit.espritrestau.entities.Repas; // Import Repas entity
+import com.esprit.espritrestau.entities.Consommateur; // Import Consommateur entity
 import com.esprit.espritrestau.utils.DataSource;
 
 import java.sql.*;
@@ -102,5 +104,48 @@ public class LignePresenceService implements ILignePresence<Presence> {
             e.printStackTrace();
             return false;
         }
+    }
+
+    // New method to get Repas by ID
+    public Repas getRepasById(int id) {
+        String query = "SELECT * FROM repas WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new Repas(
+                        rs.getInt("id"),
+                        rs.getDate("date"),
+                        rs.getString("nom-repas"),
+                        rs.getInt("nbrRepas"),
+                        rs.getDouble("cout")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // New method to get Consommateur by ID
+    public Consommateur getConsommateurById(int id) {
+        String query = "SELECT * FROM consommateur WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return new Consommateur(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getInt("tel"),
+                        rs.getString("password"),
+                        null
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

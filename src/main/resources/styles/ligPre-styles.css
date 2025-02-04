@@ -16,7 +16,15 @@
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
 }
-
+#modifybutton {
+    -fx-background-color: linear-gradient(#66b3ff, #3399ff); /* Blue gradient */
+    -fx-text-fill: white; /* Text color */
+    -fx-border-color: #0073e6; /* Darker blue for border */
+    -fx-border-width: 1px; /* Border width */
+    -fx-padding: 8px 15px; /* Padding */
+    -fx-background-radius: 5px; /* Round corners */
+    -fx-border-radius: 5px; /* Round border corners */
+}
 .button:hover {
     -fx-background-color: linear-gradient(#ff4d4d, #ff1a1a);
 }

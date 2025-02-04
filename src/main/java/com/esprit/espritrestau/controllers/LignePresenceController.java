@@ -13,9 +13,11 @@ import javafx.scene.control.*;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
+import java.util.Optional;
 
 public class LignePresenceController {
 
@@ -45,7 +47,10 @@ public class LignePresenceController {
 
     @FXML
     private Button addButton;
-
+    @FXML
+    private Button modifyButton;
+    @FXML
+    private Button deleteButton;
     private LignePresenceService service;
     private Connection connection;
 
@@ -68,6 +73,15 @@ public class LignePresenceController {
         idConsomateurColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getIdConsomateur()).asObject());
 
         adjustColumnWidths();
+        presenceTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                modifyButton.setVisible(true);
+                deleteButton.setVisible(true);
+            } else {
+                modifyButton.setVisible(false);
+                deleteButton.setVisible(false);
+            }
+        });
     }
 
     private void loadRepasData() {
@@ -92,7 +106,56 @@ public class LignePresenceController {
 
         repasComboBox.getItems().setAll(repasList);
     }
+    @FXML
+    public void handleModifyButton() {
+        Presence selectedPresence = presenceTableView.getSelectionModel().getSelectedItem();
+        if (selectedPresence != null) {
+            repasComboBox.setValue(service.getRepasById(selectedPresence.getIdRepas()));
+            consommateurComboBox.setValue(service.getConsommateurById(selectedPresence.getIdConsomateur()));
 
+            // Convert java.sql.Date to LocalDate
+            LocalDate localDate = selectedPresence.getDate().toLocalDate();
+            dateInput.setValue(localDate);
+
+            // Add a confirmation dialog for the user to confirm the modification
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirm Modification");
+            alert.setHeaderText("Are you sure you want to modify this entry?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Save the modified entry
+                int id = selectedPresence.getId();
+                LocalDate newDate = dateInput.getValue();
+                int newIdRepas = repasComboBox.getValue().getId();
+                int newIdConsomateur = consommateurComboBox.getValue().getId();
+
+                if (newDate != null) {
+                    service.update(id, java.sql.Date.valueOf(newDate), newIdRepas, newIdConsomateur);
+                    loadPresenceData();
+                    showAlert("Success", "Presence successfully modified!");
+                } else {
+                    showAlert("Error", "Date cannot be null!");
+                }
+            }
+        }
+    }
+    @FXML
+    public void handleDeleteButton() {
+        Presence selectedPresence = presenceTableView.getSelectionModel().getSelectedItem();
+        if (selectedPresence != null) {
+            service.delete(selectedPresence.getId());
+            loadPresenceData(); // Refresh the table
+            showAlert("Success", "Presence successfully deleted!");
+        }
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
     private void loadConsommateurData() {
         List<Consommateur> consommateurList = new ArrayList<>();
         String query = "SELECT * FROM consommateur";
@@ -145,7 +208,7 @@ public class LignePresenceController {
         LocalDate localDate = dateInput.getValue();
 
         if (selectedRepas == null || selectedConsommateur == null || localDate == null) {
-            System.out.println("Please fill in all fields!");
+            showAlert("Error", "Fill all fields");
             return;
         }
 
