@@ -11,6 +11,15 @@
     -fx-border-width: 1px;
     -fx-border-style: solid;
 }
+
+#textinput {
+    -fx-border-color: red;      /* Couleur de la bordure */
+    -fx-border-radius: 10px;    /* Bordure arrondie */
+    -fx-background-radius: 10px; /* Arrondir aussi l'arrière-plan */
+    -fx-border-width: 2px;      /* Épaisseur de la bordure */
+    -fx-padding: 5px;           /* Espacement intérieur */
+}
+
 /* Apply to the TableView */
 .table-view {
     -fx-background-color: #f4f4f4; /* Background color */

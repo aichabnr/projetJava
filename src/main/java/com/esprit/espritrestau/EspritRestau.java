@@ -16,8 +16,8 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Objects;
 
-public class EspritRestau  extends Application {
 
+public class EspritRestau  extends Application {
 
 
     @Override
@@ -28,11 +28,13 @@ public class EspritRestau  extends Application {
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
         stage.getIcons().add(new Image("file:src/main/resources/images/logo.png")) ;
         stage.setScene(scene);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
+
 
     public static void main(String[] args) {
         launch();
     }
 }
+

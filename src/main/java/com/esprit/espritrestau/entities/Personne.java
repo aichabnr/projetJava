@@ -7,7 +7,6 @@ public class Personne implements Serializable {
     private String nom;
     private String prenom;
     private String  tel;
-
     private  String password;
     public Personne() {
 

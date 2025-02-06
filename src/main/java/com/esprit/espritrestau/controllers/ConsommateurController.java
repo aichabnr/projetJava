@@ -6,7 +6,7 @@ import com.esprit.espritrestau.services.PersonneService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent; // Import ActionEvent
+import javafx.event.ActionEvent;
 
 import java.sql.SQLException;
 
@@ -33,7 +33,7 @@ public class ConsommateurController {
         this.personneService = new PersonneService();
     }
 
-    // Updated method signature to accept ActionEvent instead of MouseEvent
+
     @FXML
     public void addConsommateur(ActionEvent event) {
         String nom = txtNom.getText();
@@ -54,7 +54,7 @@ public class ConsommateurController {
         }
     }
 
-    // Updated method signature to accept ActionEvent instead of MouseEvent
+
     @FXML
     public void updateConsommateur(ActionEvent event) {
         int id  = (int) (Math.random() % 99999) + 1;
@@ -65,7 +65,7 @@ public class ConsommateurController {
         String type = txtType.getText();
 
         Consommateur consommateur = new Consommateur(id, nom, prenom, tel, password);
-        consommateur.setId(1); // Just an example. You should get the ID from the selected row
+        consommateur.setId(1);
 
         boolean result = personneService.updatePersonne(consommateur);
         if (result) {
@@ -75,13 +75,14 @@ public class ConsommateurController {
         }
     }
 
-    // Updated method signature to accept ActionEvent instead of MouseEvent
+
     @FXML
     public void deleteConsommateur(ActionEvent event) {
-        int id = 1; // Just an example. You should get the ID from the selected row
+        int id = 1;
 
         boolean result = personneService.deletePersonne(id);
         if (result) {
+
             showAlert("Succès", "Consommateur supprimé avec succès.");
         } else {
             showAlert("Erreur", "Une erreur est survenue lors de la suppression.");

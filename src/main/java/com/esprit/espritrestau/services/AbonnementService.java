@@ -24,10 +24,12 @@
                 checkStatement.setInt(1, abonnement.getId());
                 ResultSet resultSet = checkStatement.executeQuery();
 
+
                 if (resultSet.next() && resultSet.getInt(1) > 0) {
 
                     throw new AbonnementAlreadyExistsException("Abonnement with ID " + abonnement.getId() + " already exists.");
                 }
+
                 try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                     insertStatement.setInt(1, abonnement.getId());
                     insertStatement.setDate(2, new java.sql.Date(abonnement.getDateDebut().getTime()));
@@ -90,6 +92,7 @@
 
         @Override
         public void updateAbonnement(Abonnement abonnement) {
+            //
             String query = "UPDATE abonnement SET dateDebut = ?, dateFin = ?, solde = ?, idConsomateur = ? WHERE id = ?";
             try (PreparedStatement statement = connection.prepareStatement(query)) {
                 statement.setDate(1, new java.sql.Date(abonnement.getDateDebut().getTime()));
