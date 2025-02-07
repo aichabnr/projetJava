@@ -8,6 +8,7 @@ public class Repas {
     private String nom;
     private int nbRepas;
     private double cout;
+    private double prix;
 
     public Repas() {
 
@@ -18,6 +19,14 @@ public class Repas {
         this.nom = nom;
         this.nbRepas = nbRepas;
         this.cout = cout;
+    }
+
+    public double getPrix() {
+        return prix;
+    }
+
+    public void setPrix(double prix) {
+        this.prix = prix;
     }
 
     public int getId() {

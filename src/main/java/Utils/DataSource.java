@@ -1,21 +1,18 @@
 package Utils;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
 public class DataSource {
+
     private Connection conn;
 
-    private static String url = "jdbc:mysql://localhost:3306/restoesprit";
+    private  String url = "jdbc:mysql://localhost:3306/restoesprit";
     private  String user = "root";
     private  String pass = "";
     private static DataSource data;
 
-     DataSource() {
+    private DataSource() {
 
         try {
-            conn= DriverManager.getConnection(url,user,pass);
+            conn=DriverManager.getConnection(url,user,pass);
             System.out.println("connexion établie");
         } catch (SQLException e) {
             System.out.println(e);

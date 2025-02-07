@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="15" stylesheets="@modern-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.RepasController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <HBox spacing="20" styleClass="stats-container">
+        <VBox prefHeight="44.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="stats-label" text="Total Repas" />
+            <Label fx:id="totalMealsLabel" styleClass="stats-value" text="0" />
+        </VBox>
+        <VBox prefHeight="44.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
+            <Label styleClass="stats-label" text="Total Cout" />
+            <Label fx:id="totalCostLabel" styleClass="stats-value" text="0.00 TND" />
+        </VBox>
+      <VBox layoutX="463.0" layoutY="25.0">
+         <children>
+            <Label styleClass="stats-label" text="Total de Revenue" />
+            <Label fx:id="totalCostLabel1" prefHeight="27.0" prefWidth="233.0" styleClass="stats-value" text="0.00 TND" />
+         </children>
+      </VBox>
+      <VBox layoutX="818.0" layoutY="25.0">
+         <children>
+            <Label styleClass="stats-label" text="Total Expense" />
+            <Label fx:id="totalCostLabel11" prefHeight="27.0" prefWidth="179.0" styleClass="stats-value" text="0.00 TND" />
+         </children>
+      </VBox>
+    </HBox>
+
+    <TableView fx:id="repasTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" minWidth="50" text="ID" />
+            <TableColumn fx:id="dateColumn" minWidth="100" text="Date" />
+            <TableColumn fx:id="nomColumn" minWidth="200" text="Nom" />
+            <TableColumn fx:id="nbRepasColumn" minWidth="120" text="Repas" />
+            <TableColumn fx:id="coutColumn" minWidth="100" text="Cout" />
+         <TableColumn fx:id="coutColumn1" minWidth="100" text="Prix" />
+         <TableColumn fx:id="coutColumn11" minWidth="100" text="Revenue" />
+         <TableColumn fx:id="coutColumn111" minWidth="100" text="Expense" />
+        </columns>
+        <placeholder>
+            <Label styleClass="placeholder-text" text="No meals recorded" />
+        </placeholder>
+    </TableView>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Region layoutX="111.0" layoutY="10.0" prefHeight="100.0" prefWidth="84.0" />
+         <Button mnemonicParsing="false" text="Chart des Repas" />
+         <Region prefHeight="100.0" prefWidth="190.0" />
+         <Button mnemonicParsing="false" text="Chart des Revenue et Expense" />
+         <Region prefHeight="100.0" prefWidth="190.0" />
+            <Button fx:id="exportButton" onAction="#handleExport" styleClass="btn-accent" text="Export CSV" />
+      </children>
+   </HBox>
+</VBox>

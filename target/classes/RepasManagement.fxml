@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
+
+<VBox spacing="15" stylesheets="@modern-styles.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controllers.RepasController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" styleClass="app-header">
+        <Label text="Resto Esprit" styleClass="app-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="searchField" promptText="Recherche par nom"
+                   styleClass="search-field"/>
+    </HBox>
+
+    <VBox styleClass="input-container">
+        <GridPane hgap="15" vgap="15" styleClass="input-grid">
+            <columnConstraints>
+                <ColumnConstraints minWidth="120" prefWidth="150" hgrow="SOMETIMES"/>
+                <ColumnConstraints minWidth="250" prefWidth="300" hgrow="ALWAYS"/>
+            </columnConstraints>
+
+            <Label text="Repas ID" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="input-label"/>
+            <TextField fx:id="idField" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="input-field"/>
+
+            <Label text="Date" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="input-label"/>
+            <DatePicker fx:id="dateField" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="date-picker"/>
+
+            <Label text="Nom" GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="input-label"/>
+            <TextField fx:id="nomField" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="input-field"/>
+
+            <Label text="Nombre des repas" GridPane.columnIndex="0" GridPane.rowIndex="3" styleClass="input-label"/>
+            <TextField fx:id="nbRepasField" GridPane.columnIndex="1" GridPane.rowIndex="3" styleClass="input-field"/>
+
+            <Label text="Cout" GridPane.columnIndex="0" GridPane.rowIndex="4" styleClass="input-label"/>
+            <TextField fx:id="coutField" GridPane.columnIndex="1" GridPane.rowIndex="4" styleClass="input-field"/>
+        </GridPane>
+
+        <HBox spacing="10" styleClass="action-buttons-container">
+            <Button fx:id="addButton" text="Ajouter" onAction="#handleAdd" styleClass="btn-primary"/>
+            <Button fx:id="updateButton" text="Mise a jour" onAction="#handleUpdate" styleClass="btn-secondary"/>
+            <Button fx:id="deleteButton" text="Suppression" onAction="#handleDelete" styleClass="btn-danger"/>
+            <Button fx:id="clearButton" text="Effacer" onAction="#clearFields" styleClass="btn-neutral"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="exportButton" text="Export CSV" onAction="#handleExport" styleClass="btn-accent"/>
+        </HBox>
+    </VBox>
+
+    <HBox spacing="20" styleClass="stats-container">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="Total Repas" styleClass="stats-label"/>
+            <Label fx:id="totalMealsLabel" text="0" styleClass="stats-value"/>
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <Label text="Total Cout" styleClass="stats-label"/>
+            <Label fx:id="totalCostLabel" text="0.00 TND" styleClass="stats-value"/>
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="repasTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" minWidth="50"/>
+            <TableColumn fx:id="dateColumn" text="Date" minWidth="100"/>
+            <TableColumn fx:id="nomColumn" text="Nom" minWidth="200"/>
+            <TableColumn fx:id="nbRepasColumn" text="Repas" minWidth="120"/>
+            <TableColumn fx:id="coutColumn" text="Cout" minWidth="100"/>
+        </columns>
+        <placeholder>
+            <Label text="No meals recorded" styleClass="placeholder-text"/>
+        </placeholder>
+    </TableView>
+</VBox>
