@@ -9,7 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Proposition.AfficherPropositions">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Proposition.AfficherPropositions">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -22,10 +24,11 @@
                               <TableView fx:id="tableProposition" prefHeight="412.0" prefWidth="995.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <columns>
                                     <TableColumn fx:id="colId" maxWidth="6000.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
-                                    <TableColumn fx:id="colObjet" minWidth="53.0" prefWidth="200.0" text="Objet" />
-                                    <TableColumn fx:id="colDescription" prefWidth="300.0" text="Discription" />
-                                    <TableColumn fx:id="colConsomateur" minWidth="53.0" prefWidth="200.0" text="Consomateur" />
-                                    <TableColumn fx:id="colActions" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Actions" />
+                                    <TableColumn fx:id="colObjet" minWidth="53.0" prefWidth="164.0" text="Objet" />
+                                    <TableColumn fx:id="colDescription" prefWidth="252.0" text="Discription" />
+                                    <TableColumn fx:id="colConsomateur" minWidth="53.0" prefWidth="148.0" text="Consomateur" />
+                                    <TableColumn fx:id="colUpdate" maxWidth="212.0" minWidth="50.0" prefWidth="97.0" text="Modifier" />
+                                    <TableColumn fx:id="colDelet" maxWidth="198.0" minWidth="68.0" prefWidth="116.0" text="Supprimer" />
                                  </columns>
                               </TableView>
                            </children>

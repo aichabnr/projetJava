@@ -21,6 +21,12 @@ public class Reclamation {
         this.objet = objet;
         this.idConsomateur = idConsomateur;
     }
+
+    public Reclamation( String description, String objet, int id) {
+        this.id = id;
+        this.description = description;
+        this.objet = objet;
+    }
     public Reclamation( Date date, String description, String objet, int idConsomateur) {
         this.date = date;
         this.description = description;

@@ -22,11 +22,12 @@
                               <TableView fx:id="tableReclamation" prefHeight="412.0" prefWidth="995.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <columns>
                                     <TableColumn fx:id="colId" maxWidth="6000.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
-                                    <TableColumn fx:id="colObjet" minWidth="53.0" prefWidth="150.0" text="Objet" />
-                                    <TableColumn fx:id="colconsomateur" minWidth="53.0" prefWidth="150.0" text="consomateur" />
-                                    <TableColumn fx:id="colDescription" prefWidth="200.0" text="Description" />
-                                    <TableColumn fx:id="colDate" prefWidth="150.0" text="Date" />
-                                    <TableColumn fx:id="colActions" maxWidth="100.0" minWidth="120.0" prefWidth="200.0" text="Actions" />
+                                    <TableColumn fx:id="colObjet" minWidth="53.0" prefWidth="118.0" text="Objet" />
+                                    <TableColumn fx:id="colconsomateur" minWidth="53.0" prefWidth="126.0" text="consomateur" />
+                                    <TableColumn fx:id="colDescription" prefWidth="206.0" text="Description" />
+                                    <TableColumn fx:id="colDate" prefWidth="124.0" text="Date" />
+                                    <TableColumn fx:id="colUpdate" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Actions" />
+                                    <TableColumn fx:id="colDelet" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Actions" />
                                  </columns>
                               </TableView>
                            </children>

@@ -9,15 +9,23 @@ import javafx.fxml.FXML;
 
 import java.sql.SQLException;
 import java.util.Date;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 public class AjouterReclamation {
     @FXML
     private Label label;
 
     @FXML
     private TextField Description;
-
+    @FXML
+    private Label confirmationLabel;
     @FXML
     private TextField Objet;
     private Services.ServiceReclamation  serviceReclamation ;
@@ -39,6 +47,26 @@ public class AjouterReclamation {
             return;
         }
         serviceReclamation.ajouter(rec1); // Appel du service
+        confirmationLabel.setVisible(true);
+
 
     }
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamations.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Proposition");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de la page.");
+        }    }
 }

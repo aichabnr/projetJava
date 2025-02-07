@@ -49,12 +49,11 @@ public class ServiceReclamation implements IService <Reclamation>{
 
     @Override
     public void update(Reclamation reclamation) {
-        String sql = "UPDATE reclamation SET `description` = ?, `objet` = ?, `idConsomateur` = ? WHERE `id` = ?";
+        String sql = "UPDATE reclamation SET `description` = ?, `objet` = ? WHERE `id` = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, reclamation.getDescription());
             stmt.setString(2, reclamation.getObjet());
-            stmt.setInt(3, reclamation.getIdConsomateur());
-            stmt.setInt(4, reclamation.getId());
+            stmt.setInt(3, reclamation.getId());
             int rowsUpdated = stmt.executeUpdate();
             if (rowsUpdated > 0) {
                 System.out.println("Reclamation updated successfully.");
