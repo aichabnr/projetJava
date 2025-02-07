@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Repas {
     private int id;
-    private Date date;
+    private String date;
     private String nom;
     private int nbRepas;
     private double cout;
@@ -13,7 +13,7 @@ public class Repas {
     public Repas() {
 
     }
-    public Repas(int id, Date date, String nom, int nbRepas, double cout) {
+    public Repas(int id, String date, String nom, int nbRepas, double cout) {
         this.id = id;
         this.date = date;
         this.nom = nom;
@@ -53,11 +53,11 @@ public class Repas {
         this.cout = cout;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

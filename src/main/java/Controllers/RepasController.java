@@ -1,7 +1,7 @@
 package Controllers;
 
 import Entites.Repas;
-import Services.ServiceRepas;
+import Services.serviceRepas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -43,10 +43,10 @@ public class RepasController {
 
     private ObservableList<Repas> repasList = FXCollections.observableArrayList();
     private FilteredList<Repas> filteredList;
-    private ServiceRepas serviceRepas;
+    private serviceRepas serviceRepas;
 
     public RepasController() {
-        serviceRepas = new ServiceRepas();
+        serviceRepas = new serviceRepas();
     }
 
     @FXML

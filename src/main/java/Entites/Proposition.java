@@ -13,6 +13,17 @@ public class Proposition {
         this.objet = objet;
         this.idConsomateur = idConsomateur;
     }
+    public Proposition(int id, String description, String objet) {
+        this.description = description;
+        this.objet = objet;
+        this.idConsomateur = idConsomateur;
+    }
+
+    public Proposition(String description, String objet, int id) {
+        this.description = description;
+        this.objet = objet;
+        this.id = id;
+    }
 
     public Proposition() {
 

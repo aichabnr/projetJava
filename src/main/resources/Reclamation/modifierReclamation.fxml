@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.ModifierReclamation">
+   <children>
+      <Label fx:id="label" layoutX="61.0" layoutY="14.0" text="Modifier une reclamation" textFill="#850f36">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtObjet" layoutX="179.0" layoutY="134.0" prefHeight="25.0" prefWidth="243.0" promptText="Objet" />
+      <TextField fx:id="txtDescription" alignment="TOP_LEFT" layoutX="179.0" layoutY="188.0" prefHeight="25.0" prefWidth="243.0" promptText="Description">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TextField>
+      <Button layoutX="179.0" layoutY="232.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="243.0" style="-fx-background-color: #850f36;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Button>
+
+      <!-- Bouton retour -->
+      <Button layoutX="550.0" layoutY="20.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: transparent;">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <image>
+                  <Image url="@../images/return.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
