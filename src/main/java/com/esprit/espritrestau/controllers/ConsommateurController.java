@@ -1,7 +1,6 @@
 package com.esprit.espritrestau.controllers;
 
 import com.esprit.espritrestau.entities.Consommateur;
-import com.esprit.espritrestau.entities.Personne;
 import com.esprit.espritrestau.entities.TPA;
 import com.esprit.espritrestau.services.PersonneService;
 import javafx.collections.FXCollections;
@@ -15,6 +14,7 @@ import javafx.util.Callback;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ConsommateurController {
 
@@ -146,15 +146,33 @@ public class ConsommateurController {
         }
     }
 
-
     private void modifyConsommateur(Consommateur consommateur) {
-        txtNom.setText(consommateur.getNom());
-        txtPrenom.setText(consommateur.getPrenom());
-        txtTel.setText(consommateur.getTel());
-        txtPassword.setText(consommateur.getPassword());
-        selectedType = consommateur.getType();
-        menuType.setText(selectedType == TPA.ETUDIANT ? "Etudiant" : "Personnel");
+        // Create a simple TextInputDialog to get the new name
+        TextInputDialog dialog = new TextInputDialog(consommateur.getNom());  // Default value is the current name
+        dialog.setTitle("Modifier Nom");
+        dialog.setHeaderText("Modifier le nom du consommateur");
+        dialog.setContentText("Nouveau nom:");
+
+        // Show the dialog and wait for the user's response
+        Optional<String> result = dialog.showAndWait();
+
+        // Process the result
+        result.ifPresent(newNom -> {
+            // Update the Consommateur object
+            consommateur.setNom(newNom);
+
+            // Update the Consommateur in the database
+            if (personneService.updatePersonne(consommateur)) {
+                System.out.println("everyhing went fine! ");
+                // Refresh the TableView
+                loadConsommateurs();
+                showAlert("Succès", "Nom du consommateur modifié avec succès.");
+            } else {
+                showAlert("Erreur", "Erreur lors de la modification du nom du consommateur.");
+            }
+        });
     }
+
 
     private void deleteConsommateur(Consommateur consommateur) {
         boolean result = personneService.deletePersonne(consommateur.getId());

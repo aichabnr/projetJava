@@ -1,24 +1,11 @@
-/* Apply to a specific class or element */
-#tab {
-    -fx-border-color: black; /* Border color */
-    -fx-border-width: 2px;   /* Border width */
-    -fx-border-style: solid; /* Border style */
-}
-
-/* Example: Apply to all nodes of a specific type, e.g., Button */
-#loginbtn {
-    -fx-border-color: black;
-    -fx-border-width: 1px;
-    -fx-border-style: solid;
-}
-
 /* Apply to the TableView */
 .table-view {
     -fx-background-color: #f8e7ee;
-    -fx-border-color: #850f36;
+    -fx-border-color: #850f36; /* Red Border */
+    -fx-border-width: 2px;
     -fx-border-radius: 8px;
     -fx-padding: 5px;
-    -fx-table-cell-border-color: transparent;
+    -fx-table-cell-border-color: #850f36; /* Red Cell Borders */
     -fx-font-size: 14px;
     -fx-text-fill: #333;
 }
@@ -28,8 +15,12 @@
     -fx-background-color: #850f36;
 }
 
-.table-view .column-header-background .label {
-    -fx-text-fill: white; /* Changed to white for better contrast */
+.table-view .column-header {
+    -fx-border-color: #850f36; /* Red Column Header Border */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #850f36; /* Red Text for Column Headers */
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-alignment: CENTER;
@@ -38,6 +29,7 @@
 /* Table row alignment */
 .table-cell {
     -fx-alignment: CENTER;
+    -fx-border-color: #850f36; /* Red Cell Borders */
 }
 
 .table-row-cell:selected {
@@ -46,7 +38,7 @@
 }
 
 /* Default Button Style */
-.button { /* Changed to a class selector for wider application */
+.button {
     -fx-background-color: #850f36;
     -fx-text-fill: white;
     -fx-padding: 5 10 5 10;
@@ -60,12 +52,12 @@
 
 /* Hover Effect */
 .button:hover {
-    -fx-background-color: #a3345b;  /* Slightly darker shade of the base color */
+    -fx-background-color: #a3345b;
 }
 
 /* Pressed (Active) Effect */
 .button:pressed {
-    -fx-background-color: #660a27; /* Even darker shade */
+    -fx-background-color: #660a27;
 }
 
 /* Focused Button (Optional) */

@@ -57,10 +57,14 @@ public class PersonneService {
                 }
 
                 // Now, insert into the consommateur table
-                String queryConsommateur = "INSERT INTO consommateur (id, type) VALUES (?, ?)";
+                String queryConsommateur = "INSERT INTO consommateur (id, type,nom, prenom, Tel, password) VALUES (?, ?,?,?,?,?)";
                 try (PreparedStatement preConsommateur = con.prepareStatement(queryConsommateur)) {
                     preConsommateur.setInt(1, personneId); // Use the generated ID
                     preConsommateur.setString(2, ((Consommateur) personne).getType().toString());
+                    preConsommateur.setString(3, personne.getNom());
+                    preConsommateur.setString(4, personne.getPrenom());
+                    preConsommateur.setString(5, personne.getTel());
+                    preConsommateur.setString(6, personne.getPassword());
                     preConsommateur.executeUpdate();
                     return true;
                 } catch (SQLException e) {
@@ -74,6 +78,7 @@ public class PersonneService {
             }
         }
         return false;
+
     }
 
     public boolean updatePersonne(Personne personne) {
@@ -98,13 +103,14 @@ public class PersonneService {
             }
         } else if (personne instanceof Consommateur) {
             // First, update the personne table
-            String queryPersonne = "UPDATE personne SET nom = ?, prenom = ?, Tel = ?, password = ? WHERE id = ?";
+            String queryPersonne = "UPDATE consommateur SET nom = ?, prenom = ?, Tel = ?, password = ? WHERE id = ?";
             try (PreparedStatement prePersonne = con.prepareStatement(queryPersonne)) {
                 prePersonne.setString(1, personne.getNom());
                 prePersonne.setString(2, personne.getPrenom());
                 prePersonne.setString(3, personne.getTel());
                 prePersonne.setString(4, personne.getPassword());
                 prePersonne.setInt(5, personne.getId());
+                System.out.println(prePersonne);
                 prePersonne.executeUpdate();
 
                 // Now, update the consommateur table
@@ -128,7 +134,7 @@ public class PersonneService {
     }
 
     public boolean deletePersonne(int id) {
-        String query = "DELETE FROM personne WHERE id = ?";
+        String query = "DELETE FROM consommateur WHERE id = ?";
         try (PreparedStatement pre = con.prepareStatement(query)) {
             pre.setInt(1, id);
             int rowsAffected = pre.executeUpdate();
@@ -165,7 +171,6 @@ public class PersonneService {
         }
         return consommateurList;
     }
-
 
     // Old method - Keep for reference, but not used in ConsommateurController now.
     public List<Personne> getAllPersonnes() {
