@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1286.0" stylesheets="@../../../styles/ligPre-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.espritrestau.controllers.LignePresenceController">
+    <children>
+      <Pane layoutX="116.0" layoutY="61.0" prefHeight="200.0" prefWidth="1054.0" style="-fx-border-color: #ff9999;" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0">
+         <children>
+              <Text fill="#8c0a1b" layoutX="237.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de ligne de présence" textAlignment="CENTER" wrappingWidth="579.13671875">
+                  <font>
+                      <Font name="Verdana Bold" size="30.0" />
+                  </font>
+              </Text>
+         </children>
+      </Pane>
+        <TableView fx:id="presenceTableView" layoutX="116.0" layoutY="297.0" prefHeight="426.0" prefWidth="1054.0" stylesheets="@../../../styles/ligPre-styles.css" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0">
+            <columns>
+                <TableColumn fx:id="idColumn" minWidth="50" prefWidth="0" text="ID" />
+                <TableColumn fx:id="dateColumn" minWidth="100" prefWidth="0" text="Date" />
+                <TableColumn fx:id="idRepasColumn" minWidth="100" prefWidth="0" text="ID Repas" />
+                <TableColumn fx:id="idConsomateurColumn" minWidth="100" prefWidth="0" text="ID Consomateur" />
+            </columns>
+        </TableView>
+
+        <!-- Input Fields -->
+        <ComboBox fx:id="repasComboBox" layoutX="231.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
+        <ComboBox fx:id="consommateurComboBox" layoutX="456.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
+        <DatePicker fx:id="dateInput" layoutX="690.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
+
+        <Button fx:id="addButton" layoutX="942.0" layoutY="195.0" onAction="#handleAddButton" prefHeight="33.0" prefWidth="91.0" text="Add" />
+        <Button fx:id="modifyButton" layoutX="550.0" layoutY="735.0" onAction="#handleModifyButton" prefHeight="33.0" prefWidth="91.0" text="Modify" visible="false" />
+        <Button id="modifybutton" fx:id="deleteButton" layoutX="700.0" layoutY="735.0" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="91.0" stylesheets="@../../../styles/ligPre-styles.css" text="Delete" visible="false" />    </children>
+</AnchorPane>

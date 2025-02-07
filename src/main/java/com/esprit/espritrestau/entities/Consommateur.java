@@ -34,4 +34,12 @@ public class Consommateur extends Personne {
     public void setType(TPA type) {
         this.type = type;
     }
+<<<<<<< HEAD
 }
+=======
+    @Override
+    public String toString() {
+        return getNom() + " " + getPrenom();
+    }
+}
+>>>>>>> 49116bedd0d23f21793a754a55363b8d48ce5db3
