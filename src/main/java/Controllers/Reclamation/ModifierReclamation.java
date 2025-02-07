@@ -24,11 +24,15 @@ public class ModifierReclamation {
     private TextField txtDescription;
     @FXML
     private Label confirmationLabel;
-    @FXML
-    private TextField txtObjet;
+
     private int currentId;
 
+    @FXML
+    private TextField txtObjet;
+
     private Services.ServiceReclamation ServiceReclamation;
+
+
 
     public ModifierReclamation() {
         this.ServiceReclamation = new ServiceReclamation();

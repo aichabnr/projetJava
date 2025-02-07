@@ -218,6 +218,8 @@ public class AfficherPropositions {
     }
 
 
+
+
     private void handleEditAction(Proposition proposition, ActionEvent event) {
         System.out.println("Modifier la proposition : " + proposition.getId());
         try {

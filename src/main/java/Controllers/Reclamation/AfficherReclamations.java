@@ -1,8 +1,7 @@
 package Controllers.Reclamation;
 
 
-import Controllers.Proposition.ModifierProposition;
-import Controllers.Proposition.SupprimerProposition;
+
 import Entites.Proposition;
 import Entites.Reclamation;
 import Services.ServiceReclamation;
@@ -19,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
+
 import javafx.stage.Stage;
 
 import java.io.InputStream;
@@ -209,6 +209,7 @@ public class AfficherReclamations {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la popup.");
         }
+
     }
     private void handleEditAction(Reclamation reclamation, ActionEvent event) {
         System.out.println("Modifier la proposition : " + reclamation.getId());

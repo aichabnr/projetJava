@@ -23,9 +23,10 @@ public class ModifierProposition {
     private int currentId;
     @FXML
     private TextField txtDescription;
+
     @FXML
     private Label confirmationLabel;
-    private Services.serviceProposition serviceProposition;
+private Services.serviceProposition serviceProposition;
 
     @FXML
     private TextField txtObjet;
@@ -80,6 +81,7 @@ public class ModifierProposition {
 
         serviceProposition.update(p1);
         confirmationLabel.setVisible(true);
+
 
     }
 }
