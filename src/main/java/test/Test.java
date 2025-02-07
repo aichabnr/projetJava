@@ -15,10 +15,10 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-           //// FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/ajouterProposition.fxml"));
-            // FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/ajouterReclamation.fxml"));
-             //FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamations.fxml"));
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+          /////////////Admin
+         ///:   FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+////////////////////Consomateur
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menuConsumer.fxml"));
 
             AnchorPane root = loader.load();
 

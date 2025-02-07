@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #5D001E;" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MenuConsoController">
+
+
+
+
+    <Button layoutX="299.0" layoutY="70.0" onAction="#openReclamation" prefHeight="56.0" prefWidth="165.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Reclamation" />
+    <Button layoutX="97.0" layoutY="68.0" onAction="#openProposition" prefHeight="56.0" prefWidth="165.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Proposition" />
+
+</AnchorPane>

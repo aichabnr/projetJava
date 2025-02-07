@@ -58,7 +58,8 @@ public class AfficherReclamations {
 
     @FXML
     private TextField txtSearch;
-
+    @FXML
+    private Button Chercher;
 
 
 
@@ -193,12 +194,11 @@ public class AfficherReclamations {
 
             Scene scene = new Scene(root);
             Stage popupStage = new Stage();
-            // Passer la proposition au controller de la page modifierProposition
             SupprimerReclamation  controller = loader.getController();
             controller.initializeData(reclamation);
 
             popupStage.setTitle("Popup");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Bloquer l'interaction avec la fenêtre principale
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(scene);
 
             SupprimerReclamation popupController = loader.getController();
@@ -231,5 +231,31 @@ public class AfficherReclamations {
             System.err.println("Erreur lors du chargement de la page.");
         }
     }
+
+    @FXML
+    void chercher(ActionEvent event) {
+        String searchTerm = txtSearch.getText().trim();
+
+        ServiceReclamation serviceReclamation = new ServiceReclamation();
+
+        try {
+            List<Reclamation> reclamations;
+            if (searchTerm.isEmpty()) {
+                reclamations = serviceReclamation.getAll();
+            } else {
+                reclamations = serviceReclamation.chercher(searchTerm);
+            }
+
+            ObservableList<Reclamation> observableList = FXCollections.observableArrayList(reclamations);
+
+            tableReclamation.setItems(observableList);
+
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la recherche des réclamations : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

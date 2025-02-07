@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/21.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamations">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamations">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -36,7 +36,8 @@
                            <children>
                               <AnchorPane prefHeight="33.0" prefWidth="771.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="2.0">
                                  <children>
-                                    <TextField fx:id="txtSearch" layoutY="2.0" promptText="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <TextField fx:id="txtSearch" layoutX="22.0" prefHeight="33.0" prefWidth="543.0" promptText="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="0.0" />
+                                    <Button fx:id="Chercher" layoutX="578.0" layoutY="3.0" mnemonicParsing="false" onAction="#chercher" style="-fx-background-color: #850f36;" text="Chercher" textFill="#f8f4f4" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="23.0" prefWidth="108.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">

@@ -1,8 +1,9 @@
-package Controllers.Proposition;
+package Controllers.Reclamation;
 
-
-import Entites.Proposition;
-import Services.serviceProposition;
+import Entites.Reclamation;
+import Services.ServiceReclamation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,95 +11,79 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.InputStream;
 import java.util.List;
 
-
-
-public class AfficherPropositions {
+public class AfficherReclamationsForConsomateur {
 
     @FXML
-    private Button btnAddProposition;
+    private Button btnAddReclamation;
 
     @FXML
-    private TableColumn<Proposition, Proposition> colActions;
+    private TableColumn<Reclamation, Void> colDelet;
 
     @FXML
-    private TableColumn<Proposition, ?> colDescription;
+    private TableColumn<Reclamation, Void> colUpdate;
+    @FXML
+    private TableColumn<Reclamation, ?> colDate;
 
     @FXML
-    private TableColumn<Proposition, ?> colId;
+    private TableColumn<Reclamation, ?> colDescription;
 
     @FXML
-    private TableColumn<Proposition, ?> colObjet;
+    private TableColumn<Reclamation, ?> colId;
 
     @FXML
-    private TableView<Proposition> tableProposition;
+    private TableColumn<Reclamation, ?> colObjet;
+
+    @FXML
+    private TableColumn<Reclamation, ?> colconsomateur;
+
+    @FXML
+    private TableView<Reclamation> tableReclamation;
 
     @FXML
     private TitledPane titledPane;
 
     @FXML
     private TextField txtSearch;
-
     @FXML
-    private TableColumn<?, ?> colConsomateur;
-
-    @FXML
-    private TableColumn<Proposition, Void>  colDelet;
-
-
-    @FXML
-    private TableColumn<Proposition, Void> colUpdate;
-
-    @FXML
-    private Button chercher;
-
+    private Button Chercher;
 
 
 
 
     @FXML
     void initialize() {
-        // Initialisation du service
-        serviceProposition serviceProposition = new serviceProposition();
-
         try {
-            // Récupérer toutes les propositions
-            List<Proposition> propositions = serviceProposition.getAll();
+            ServiceReclamation reclamationService = new ServiceReclamation();
 
-            // Convertir la liste en ObservableList
-            ObservableList<Proposition> observableList = FXCollections.observableArrayList(propositions);
+            List<Reclamation> l1 = reclamationService.getByIdConsomateur(1);
+            ObservableList<Reclamation> obse = FXCollections.observableList(l1);
+            tableReclamation.setItems(obse);
 
-            // Lier les données à la TableView
-            tableProposition.setItems(observableList);
-
-            // Configurer les CellValueFactory pour chaque colonne
             colId.setCellValueFactory(new PropertyValueFactory<>("id"));
             colObjet.setCellValueFactory(new PropertyValueFactory<>("objet"));
             colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-            colConsomateur.setCellValueFactory(new PropertyValueFactory<>("idConsomateur"));
+            colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+            colconsomateur.setCellValueFactory(new PropertyValueFactory<>("idConsomateur"));
 
             // Configurer la cellFactory pour la colonne "Modifier"
             colUpdate.setCellFactory(param -> {
-                TableCell<Proposition, Void> cell = new TableCell<Proposition, Void>() {
+                TableCell<Reclamation, Void> cell = new TableCell<Reclamation, Void>() {
                     private final Button btnEdit = new Button();
 
                     {
                         // Charger l'icône "Modifier"
                         InputStream editIconStream = getClass().getResourceAsStream("/images/edit.png");
                         if (editIconStream == null) {
-                            System.err.println("L'icône 'edit.png' n'a pas été trouvée !");
+                            System.err.println("L'icône 'refresh.png' n'a pas été trouvée !");
                         } else {
                             ImageView editIcon = new ImageView(new Image(editIconStream));
                             editIcon.setFitHeight(16);
@@ -110,8 +95,8 @@ public class AfficherPropositions {
 
                         // Définir l'action du bouton "Modifier"
                         btnEdit.setOnAction(event -> {
-                            Proposition proposition = getTableView().getItems().get(getIndex());
-                            handleEditAction(proposition, event); // Passer l'événement en paramètre
+                            Reclamation reclamation = getTableView().getItems().get(getIndex());
+                            handleEditAction(reclamation, event); // Passer l'événement en paramètre
                         });
                     }
 
@@ -130,7 +115,7 @@ public class AfficherPropositions {
 
             // Configurer la cellFactory pour la colonne "Supprimer"
             colDelet.setCellFactory(param -> {
-                TableCell<Proposition, Void> cell = new TableCell<Proposition, Void>() {
+                TableCell<Reclamation, Void> cell = new TableCell<Reclamation, Void>() {
                     private final Button btnDelete = new Button();
 
                     {
@@ -149,8 +134,8 @@ public class AfficherPropositions {
 
                         // Définir l'action du bouton "Supprimer"
                         btnDelete.setOnAction(event -> {
-                            Proposition proposition = getTableView().getItems().get(getIndex());
-                            handleDeleteAction(proposition);
+                            Reclamation reclamation = getTableView().getItems().get(getIndex());
+                            handleDeleteAction(reclamation);
                         });
                     }
 
@@ -169,14 +154,16 @@ public class AfficherPropositions {
 
         } catch (Exception e) {
             // Gérer les erreurs (par exemple, afficher un message à l'utilisateur)
-            System.err.println("Erreur lors du chargement des propositions : " + e.getMessage());
+            System.err.println("Erreur lors du chargement des réclamations : " + e.getMessage());
             e.printStackTrace();
         }
     }
+
+
     @FXML
-    void addProposition(ActionEvent event) {
+    void addReclamation(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/ajouterProposition.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/ajouterReclamation.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -192,24 +179,22 @@ public class AfficherPropositions {
         }
     }
 
-
-    private void handleDeleteAction(Proposition proposition) {
-        System.out.println("supprimer  la proposition : " + proposition.getId());
+    private void handleDeleteAction(Reclamation reclamation) {
+        System.out.println("supprimer  la reclamation : " + reclamation.getId());
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/supprimerProposition.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/supprimerReclamation.fxml"));
             Parent root = loader.load();
-            // Passer la proposition au controller de la page modifierProposition
-            SupprimerProposition controller = loader.getController();
-            controller.initializeData(proposition);
 
             Scene scene = new Scene(root);
             Stage popupStage = new Stage();
+            SupprimerReclamation  controller = loader.getController();
+            controller.initializeData(reclamation);
 
             popupStage.setTitle("Popup");
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Bloquer l'interaction avec la fenêtre principale
+            popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(scene);
 
-            SupprimerProposition  popupController = loader.getController();
+            SupprimerReclamation popupController = loader.getController();
             popupController.setPopupStage(popupStage);
 
             popupStage.show();
@@ -217,58 +202,52 @@ public class AfficherPropositions {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la popup.");
         }
+
     }
-
-
-
-
-    private void handleEditAction(Proposition proposition, ActionEvent event) {
-        System.out.println("Modifier la proposition : " + proposition.getId());
+    private void handleEditAction(Reclamation reclamation, ActionEvent event) {
+        System.out.println("Modifier la proposition : " + reclamation.getId());
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/modifierProposition.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/modifierReclamation.fxml"));
             Parent root = loader.load();
 
             // Passer la proposition au controller de la page modifierProposition
-            ModifierProposition controller = loader.getController();
-            controller.initializeData(proposition);
+            ModifierReclamation controller = loader.getController();
+            controller.initializeData(reclamation);
 
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
-            stage.setTitle("Modifier Proposition");
+            stage.setTitle("Modifier reclamation");
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la page.");
         }
     }
 
-
     @FXML
     void chercher(ActionEvent event) {
         String searchTerm = txtSearch.getText().trim();
-        serviceProposition serviceProposition = new serviceProposition();
+
+        ServiceReclamation serviceReclamation = new ServiceReclamation();
 
         try {
-            List<Proposition> propositions;
+            List<Reclamation> reclamations;
             if (searchTerm.isEmpty()) {
-                propositions = serviceProposition.getAll();
+                reclamations = serviceReclamation.getAll();
             } else {
-                propositions = serviceProposition.chercher(searchTerm);
+                reclamations = serviceReclamation.chercher(searchTerm);
             }
 
-            ObservableList<Proposition> observableList = FXCollections.observableArrayList(propositions);
+            ObservableList<Reclamation> observableList = FXCollections.observableArrayList(reclamations);
 
-            tableProposition.setItems(observableList);
+            tableReclamation.setItems(observableList);
 
         } catch (Exception e) {
-            System.err.println("Erreur lors de la recherche des propositions : " + e.getMessage());
+            System.err.println("Erreur lors de la recherche des réclamations : " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+
 }
-
-
-
