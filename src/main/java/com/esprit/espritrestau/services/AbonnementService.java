@@ -1,8 +1,16 @@
 package com.esprit.espritrestau.services;
 
+import com.esprit.espritrestau.controllers.ModifyAbonnementController;
 import com.esprit.espritrestau.entities.Abonnement;
+import com.esprit.espritrestau.entities.Consommateur;
 import com.esprit.espritrestau.exceptions.AbonnementAlreadyExistsException;
 import com.esprit.espritrestau.utils.DataSource;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+
+import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +32,7 @@ public class AbonnementService implements IAbonnement<Abonnement> {
         String insertQuery = "INSERT INTO abonnement (dateDebut, dateFin, solde, idConsomateur) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement checkStatement = connection.prepareStatement(checkQuery)) {
-            // Vérifie si un abonnement avec cet ID existe déjà
+
             checkStatement.setInt(1, abonnement.getId());
             ResultSet resultSet = checkStatement.executeQuery();
 
@@ -69,17 +77,18 @@ public class AbonnementService implements IAbonnement<Abonnement> {
     @Override
     public List<Abonnement> getAllAbonnements() {
         List<Abonnement> abonnements = new ArrayList<>();
-        String query = "SELECT * FROM abonnement";
+        String query = "SELECT a.*, c.nom, c.prenom FROM abonnement a JOIN consommateur c ON a.idConsomateur = c.id";
+
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
-                // Ajoute chaque abonnement trouvé à la liste
                 Abonnement abonnement = new Abonnement(
                         resultSet.getInt("id"),
                         resultSet.getDate("dateDebut"),
                         resultSet.getDate("dateFin"),
                         resultSet.getDouble("solde"),
-                        resultSet.getInt("idConsomateur")
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom")
                 );
                 abonnements.add(abonnement);
             }
@@ -89,7 +98,26 @@ public class AbonnementService implements IAbonnement<Abonnement> {
         return abonnements.stream().toList();
     }
 
+    public List<Consommateur> getAllConsommateurs() {
+        List<Consommateur> consommateurs = new ArrayList<>();
+        String query = "SELECT * FROM consommateur"; // Adjust the query as necessary
 
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                Consommateur consommateur = new Consommateur(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom")
+                        // Add other fields as necessary
+                );
+                consommateurs.add(consommateur);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return consommateurs;
+    }
     @Override
     public void updateAbonnement(Abonnement abonnement) {
         String query = "UPDATE abonnement SET dateDebut = ?, dateFin = ?, solde = ?, idConsomateur = ? WHERE id = ?";
@@ -147,4 +175,6 @@ public class AbonnementService implements IAbonnement<Abonnement> {
             throw new RuntimeException("Erreur lors de la récupération du coût du repas", e);
         }
     }
+
+
 }

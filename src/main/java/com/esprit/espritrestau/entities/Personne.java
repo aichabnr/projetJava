@@ -25,6 +25,9 @@ public class Personne {
         this.password = password;
     }
 
+    public Personne(int id, String nom, String prenom) {
+    }
+
     public int getId() {
         return id;
     }

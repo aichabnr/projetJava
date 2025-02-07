@@ -1,12 +1,12 @@
 package com.esprit.espritrestau.entities;
 
-import com.esprit.espritrestau.entities.TPA ;
-import com.esprit.espritrestau.entities.Personne ;
+import com.esprit.espritrestau.entities.TPA;
+import com.esprit.espritrestau.entities.Personne;
 
+public class Consommateur extends Personne {
+    private TPA type;
 
-public class Consommateur extends Personne{
-private TPA type;
-
+    // Existing constructors
     public Consommateur(TPA type) {
         this.type = type;
     }
@@ -19,6 +19,12 @@ private TPA type;
     public Consommateur(int id, String nom, String prenom, int tel, TPA type) {
         super(id, nom, prenom, tel);
         this.type = type;
+    }
+
+    // New constructor for your use case
+    public Consommateur(int id, String nom, String prenom) {
+        super(id, nom, prenom); // Call the superclass constructor
+        this.type = null; // Set type to null or handle as needed
     }
 
     public TPA getType() {
