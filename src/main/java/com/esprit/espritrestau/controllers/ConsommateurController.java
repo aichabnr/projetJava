@@ -11,10 +11,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import javafx.scene.layout.GridPane;
+import javafx.geometry.Insets;
 
 public class ConsommateurController {
 
@@ -146,36 +147,89 @@ public class ConsommateurController {
         }
     }
 
+
     private void modifyConsommateur(Consommateur consommateur) {
-        // Create a simple TextInputDialog to get the new name
-        TextInputDialog dialog = new TextInputDialog(consommateur.getNom());  // Default value is the current name
-        dialog.setTitle("Modifier Nom");
-        dialog.setHeaderText("Modifier le nom du consommateur");
-        dialog.setContentText("Nouveau nom:");
+        // Créer le dialogue
+        Dialog<Consommateur> dialog = new Dialog<>();
+        dialog.setTitle("Modifier Consommateur");
+        dialog.setHeaderText("Modifier les informations du consommateur");
 
-        // Show the dialog and wait for the user's response
-        Optional<String> result = dialog.showAndWait();
+        // Définir les boutons
+        ButtonType enregistrerButtonType = new ButtonType("Enregistrer", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(enregistrerButtonType, ButtonType.CANCEL);
 
-        // Process the result
-        result.ifPresent(newNom -> {
-            // Update the Consommateur object
-            consommateur.setNom(newNom);
+        // Créer le layout (GridPane pour une disposition plus propre)
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
 
-            // Update the Consommateur in the database
-            if (personneService.updatePersonne(consommateur)) {
-                System.out.println("everyhing went fine! ");
-                // Refresh the TableView
+        // Créer les champs
+        TextField nomField = new TextField();
+        nomField.setPromptText("Nom");
+        nomField.setText(consommateur.getNom());
+
+        TextField prenomField = new TextField();
+        prenomField.setPromptText("Prénom");
+        prenomField.setText(consommateur.getPrenom());
+
+        TextField telField = new TextField();
+        telField.setPromptText("Téléphone");
+        telField.setText(consommateur.getTel());
+
+        PasswordField passwordField = new PasswordField();
+        passwordField.setPromptText("Mot de passe");
+        passwordField.setText(consommateur.getPassword());
+
+        ComboBox<TPA> typeComboBox = new ComboBox<>();
+        typeComboBox.getItems().addAll(TPA.values());
+        typeComboBox.setValue(consommateur.getType());
+
+        // Ajouter les champs au layout
+        grid.add(new Label("Nom:"), 0, 0);
+        grid.add(nomField, 1, 0);
+        grid.add(new Label("Prénom:"), 0, 1);
+        grid.add(prenomField, 1, 1);
+        grid.add(new Label("Téléphone:"), 0, 2);
+        grid.add(telField, 1, 2);
+        grid.add(new Label("Mot de passe:"), 0, 3);
+        grid.add(passwordField, 1, 3);
+        grid.add(new Label("Type:"), 0, 4);
+        grid.add(typeComboBox, 1, 4);
+
+        // Définir le contenu du dialogue
+        dialog.getDialogPane().setContent(grid);
+
+        // Convertir le résultat quand le bouton "Enregistrer" est cliqué
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == enregistrerButtonType) {
+                // Mettre à jour l'objet Consommateur avec les valeurs des champs
+                consommateur.setNom(nomField.getText());
+                consommateur.setPrenom(prenomField.getText());
+                consommateur.setTel(telField.getText());
+                consommateur.setPassword(passwordField.getText());
+                consommateur.setType(typeComboBox.getValue());
+                return consommateur;
+            }
+            return null;
+        });
+
+        // Afficher le dialogue et attendre une réponse
+        Optional<Consommateur> result = dialog.showAndWait();
+
+        result.ifPresent(updatedConsommateur -> {
+            // Mettre à jour le consommateur dans la base de données
+            if (personneService.updatePersonne(updatedConsommateur)) {
                 loadConsommateurs();
-                showAlert("Succès", "Nom du consommateur modifié avec succès.");
+                showAlert("Succès", "Consommateur modifié avec succès.");
             } else {
-                showAlert("Erreur", "Erreur lors de la modification du nom du consommateur.");
+                showAlert("Erreur", "Erreur lors de la modification du consommateur.");
             }
         });
     }
 
-
     private void deleteConsommateur(Consommateur consommateur) {
-        boolean result = personneService.deletePersonne(consommateur.getId());
+        boolean result = personneService.deletePersonne(consommateur);
         if (result) {
             loadConsommateurs();
             showAlert("Succès", "Consommateur supprimé avec succès.");

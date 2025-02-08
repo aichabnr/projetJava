@@ -5,7 +5,6 @@ import com.esprit.espritrestau.entities.Employee;
 import com.esprit.espritrestau.entities.Personne;
 import com.esprit.espritrestau.entities.TPA;
 import com.esprit.espritrestau.utils.DatabaseConnection;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +25,8 @@ public class PersonneService {
                 pre.setString(2, personne.getPrenom());
                 pre.setString(3, personne.getTel());
                 pre.setString(4, personne.getPassword());
-
-                Employee emp = (Employee) personne;
-                pre.setString(5, emp.getPost());
-                pre.setString(6, emp.getMatriculeSocial());
-
+                pre.setString(5, ((Employee) personne).getPost());
+                pre.setString(6, ((Employee) personne).getMatriculeSocial());
                 pre.executeUpdate();
                 return true;
             } catch (SQLException e) {
@@ -78,22 +74,18 @@ public class PersonneService {
             }
         }
         return false;
-
     }
 
     public boolean updatePersonne(Personne personne) {
         if (personne instanceof Employee) {
-            String query = "UPDATE employee SET nom = ?, prenom = ?, Tel = ?, password = ?, post = ?, matriculeSocial = ? WHERE id = ?";
+            String query = "UPDATE employee SET nom = ?, prenom = ?, tel = ?, password = ?, post = ?, matriculeSocial = ? WHERE id = ?";
             try (PreparedStatement pre = con.prepareStatement(query)) {
                 pre.setString(1, personne.getNom());
                 pre.setString(2, personne.getPrenom());
                 pre.setString(3, personne.getTel());
                 pre.setString(4, personne.getPassword());
-
-                Employee emp = (Employee) personne;
-                pre.setString(5, emp.getPost());
-                pre.setString(6, emp.getMatriculeSocial());
-
+                pre.setString(5, ((Employee) personne).getPost());
+                pre.setString(6, ((Employee) personne).getMatriculeSocial());
                 pre.setInt(7, personne.getId());
                 pre.executeUpdate();
                 return true;
@@ -102,7 +94,7 @@ public class PersonneService {
                 return false;
             }
         } else if (personne instanceof Consommateur) {
-            // First, update the personne table
+
             String queryPersonne = "UPDATE consommateur SET nom = ?, prenom = ?, Tel = ?, password = ? WHERE id = ?";
             try (PreparedStatement prePersonne = con.prepareStatement(queryPersonne)) {
                 prePersonne.setString(1, personne.getNom());
@@ -113,7 +105,7 @@ public class PersonneService {
                 System.out.println(prePersonne);
                 prePersonne.executeUpdate();
 
-                // Now, update the consommateur table
+
                 String queryConsommateur = "UPDATE consommateur SET type = ? WHERE id = ?";
                 try (PreparedStatement preConsommateur = con.prepareStatement(queryConsommateur)) {
                     preConsommateur.setString(1, ((Consommateur) personne).getType().toString());
@@ -133,10 +125,12 @@ public class PersonneService {
         return false;
     }
 
-    public boolean deletePersonne(int id) {
-        String query = "DELETE FROM consommateur WHERE id = ?";
-        try (PreparedStatement pre = con.prepareStatement(query)) {
-            pre.setInt(1, id);
+
+    public boolean deletePersonne(Personne personne) {
+        String query = null;
+        try (PreparedStatement pre = (personne instanceof Employee) ? con.prepareStatement("DELETE FROM employee WHERE id = ?") : con.prepareStatement("DELETE FROM consommateur WHERE id = ?")) {
+
+            pre.setInt(1, personne.getId());
             int rowsAffected = pre.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
@@ -145,24 +139,21 @@ public class PersonneService {
         }
     }
 
-    //NEW METHOD:  Get ALL Consommateurs Directly
     public List<Consommateur> getAllConsommateurs() {
         List<Consommateur> consommateurList = new ArrayList<>();
-        // Modified Query to retrieve all info from the consommateur table
         String query = "SELECT id, nom, prenom, Tel, password, type FROM consommateur";  //CHANGED
 
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                // Create Consommateur objects directly from the result set
                 Consommateur consommateur = new Consommateur(
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
                         rs.getString("Tel"),
                         rs.getString("password"),
-                        TPA.valueOf(rs.getString("type"))  // Convert string to TPA enum
+                        TPA.valueOf(rs.getString("type"))
                 );
                 consommateurList.add(consommateur);
             }
@@ -172,25 +163,30 @@ public class PersonneService {
         return consommateurList;
     }
 
-    // Old method - Keep for reference, but not used in ConsommateurController now.
-    public List<Personne> getAllPersonnes() {
-        List<Personne> personnes = new ArrayList<>();
-        String query = "SELECT p.id, p.nom, p.prenom, p.Tel, p.password, c.type " +
-                "FROM personne p LEFT JOIN consommateur c ON p.id = c.id";
+
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = new ArrayList<>();
+        String query = "SELECT id, nom, prenom, tel, password, post, matriculeSocial FROM employee";
 
         try (Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
 
             while (rs.next()) {
-                Personne personne = mapPersonne(rs);
-                if (personne != null) {
-                    personnes.add(personne);
-                }
+                Employee employee = new Employee(
+                        rs.getInt("id"),
+                        rs.getString("nom"),
+                        rs.getString("prenom"),
+                        rs.getString("tel"),
+                        rs.getString("password"),
+                        rs.getString("post"),
+                        rs.getString("matriculeSocial")
+                );
+                employees.add(employee);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return personnes;
+        return employees;
     }
 
     public Personne getPersonneById(int id) {
