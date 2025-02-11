@@ -14,7 +14,7 @@ public class EspritRestau  extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("ligne_presence.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("login_page.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Authentificate");
         stage.getIcons().add(new Image("file:src/main/resources/images/logo.png")) ;

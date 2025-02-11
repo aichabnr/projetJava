@@ -5,37 +5,48 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="786.0" prefWidth="1286.0" stylesheets="@../../../styles/ligPre-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.espritrestau.controllers.LignePresenceController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="866.0" prefWidth="1466.0" stylesheets="@../../../styles/ligPre-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.esprit.espritrestau.controllers.LignePresenceController">
     <children>
-      <Pane layoutX="116.0" layoutY="61.0" prefHeight="200.0" prefWidth="1054.0" style="-fx-border-color: #ff9999;" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0">
-         <children>
-              <Text fill="#8c0a1b" layoutX="237.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de ligne de présence" textAlignment="CENTER" wrappingWidth="579.13671875">
-                  <font>
-                      <Font name="Verdana Bold" size="30.0" />
-                  </font>
-              </Text>
-         </children>
-      </Pane>
-        <TableView fx:id="presenceTableView" layoutX="116.0" layoutY="297.0" prefHeight="426.0" prefWidth="1054.0" stylesheets="@../../../styles/ligPre-styles.css" AnchorPane.leftAnchor="116.0" AnchorPane.rightAnchor="116.0">
+        <Pane layoutX="47.0" layoutY="61.0" prefHeight="200.0" prefWidth="1391.0" style="-fx-border-color: #ff9999;" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="28.0">
+            <children>
+                <ImageView fitHeight="989.0" fitWidth="2003.0" layoutX="-48.0" layoutY="-67.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/login_image_cover.jpg" />
+                    </image>
+                </ImageView>
+                <Text fill="WHITE" layoutX="406.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestion de ligne de présence" textAlignment="CENTER" wrappingWidth="579.13671875">
+                    <font>
+                        <Font name="Verdana Bold" size="30.0" />
+                    </font>
+                </Text>
+                <ComboBox fx:id="consommateurComboBox" layoutX="417.0" layoutY="128.0" prefHeight="42.0" prefWidth="253.0" promptText="Consommateur" />
+            </children>
+        </Pane>
+        <TableView fx:id="presenceTableView" layoutX="47.0" layoutY="297.0" prefHeight="426.0" prefWidth="1391.0" stylesheets="@../../../styles/ligPre-styles.css" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="28.0">
             <columns>
                 <TableColumn fx:id="idColumn" minWidth="50" prefWidth="0" text="ID" />
                 <TableColumn fx:id="dateColumn" minWidth="100" prefWidth="0" text="Date" />
-                <TableColumn fx:id="idRepasColumn" minWidth="100" prefWidth="0" text="ID Repas" />
-                <TableColumn fx:id="idConsomateurColumn" minWidth="100" prefWidth="0" text="ID Consomateur" />
+                <TableColumn fx:id="idRepasColumn" minWidth="100" prefWidth="0" text="Repas" />
+                <TableColumn fx:id="idConsomateurColumn" minWidth="100" prefWidth="0" text="Consomateur" />
+                <TableColumn fx:id="modifyColumn" text="Modify" />
+                <TableColumn fx:id="deleteColumn" text="Delete" />
             </columns>
         </TableView>
 
         <!-- Input Fields -->
-        <ComboBox fx:id="repasComboBox" layoutX="231.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
-        <ComboBox fx:id="consommateurComboBox" layoutX="456.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
-        <DatePicker fx:id="dateInput" layoutX="690.0" layoutY="195.0" prefHeight="33.0" prefWidth="200.0" />
+        <ComboBox fx:id="repasComboBox" layoutX="167.0" layoutY="188.0" prefHeight="42.0" prefWidth="264.0" promptText="Repas" />
+        <DatePicker fx:id="dateInput" layoutX="785.0" layoutY="188.0" prefHeight="44.0" prefWidth="234.0" promptText="Date" />
 
-        <Button fx:id="addButton" layoutX="942.0" layoutY="195.0" onAction="#handleAddButton" prefHeight="33.0" prefWidth="91.0" text="Add" />
-        <Button fx:id="modifyButton" layoutX="550.0" layoutY="735.0" onAction="#handleModifyButton" prefHeight="33.0" prefWidth="91.0" text="Modify" visible="false" />
-        <Button id="modifybutton" fx:id="deleteButton" layoutX="700.0" layoutY="735.0" onAction="#handleDeleteButton" prefHeight="33.0" prefWidth="91.0" stylesheets="@../../../styles/ligPre-styles.css" text="Delete" visible="false" />    </children>
+        <Button fx:id="addButton" layoutX="1071.0" layoutY="188.0" onAction="#handleAddButton" prefHeight="41.0" prefWidth="156.0" text="Add" textAlignment="CENTER">
+            <font>
+                <Font name="Baskerville Old Face" size="18.0" />
+            </font></Button>
+    </children>
 </AnchorPane>

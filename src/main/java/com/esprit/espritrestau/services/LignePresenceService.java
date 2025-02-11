@@ -106,7 +106,7 @@ public class LignePresenceService implements ILignePresence<Presence> {
         }
     }
 
-    // New method to get Repas by ID
+
     public Repas getRepasById(int id) {
         String query = "SELECT * FROM repas WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
@@ -127,7 +127,7 @@ public class LignePresenceService implements ILignePresence<Presence> {
         return null;
     }
 
-    // New method to get Consommateur by ID
+
     public Consommateur getConsommateurById(int id) {
         String query = "SELECT * FROM consommateur WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {

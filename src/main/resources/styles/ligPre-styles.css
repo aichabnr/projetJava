@@ -1,87 +1,107 @@
-/* Light red-themed styles for JavaFX components */
+/* Root Style */
 .root {
     -fx-font-family: 'Segoe UI', sans-serif;
-    -fx-base: white;
-    -fx-background: white;
-    -fx-text-fill: black;
+    -fx-base: #f9f9f9;
+    -fx-background: #ffffff;
+    -fx-text-fill: #333333;
 }
 
 /* Button Style */
 .button {
-    -fx-background-color: linear-gradient(#ff6666, #ff4d4d);
+    -fx-background-color: #802645;
     -fx-text-fill: white;
-    -fx-border-color: #ff9999;
+    -fx-border-color: #6e1f3a;
     -fx-border-width: 1px;
     -fx-padding: 8px 15px;
     -fx-background-radius: 5px;
     -fx-border-radius: 5px;
+    -fx-cursor: hand;
 }
+
 #modifybutton {
-    -fx-background-color: linear-gradient(#66b3ff, #3399ff); /* Blue gradient */
-    -fx-text-fill: white; /* Text color */
-    -fx-border-color: #0073e6; /* Darker blue for border */
-    -fx-border-width: 1px; /* Border width */
-    -fx-padding: 8px 15px; /* Padding */
-    -fx-background-radius: 5px; /* Round corners */
-    -fx-border-radius: 5px; /* Round border corners */
+    -fx-background-color: #802645;
+    -fx-text-fill: white;
+    -fx-border-color: #6e1f3a;
 }
+
 .button:hover {
-    -fx-background-color: linear-gradient(#ff4d4d, #ff1a1a);
+    -fx-background-color: #6e1f3a;
 }
 
 .button:pressed {
-    -fx-background-color: #e60000;
+    -fx-background-color: #5a1830;
 }
 
 /* ComboBox Style */
 .combo-box {
-    -fx-background-color: #ffe6e6;
-    -fx-border-color: #ff6666;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d1d1;
     -fx-border-radius: 5px;
     -fx-padding: 5px;
+    -fx-text-fill: #333333;
 }
 
 .combo-box .list-cell {
-    -fx-background-color: #ffe6e6;
-    -fx-text-fill: black;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
 }
 
 .combo-box .list-cell:hover {
-    -fx-background-color: #ffcccc;
+    -fx-background-color: #f0f0f0;
 }
 
 /* TableView Style */
 .table-view {
-    -fx-background-color: #ffe6e6;
-    -fx-border-color: #ff6666;
-    -fx-table-cell-border-color: #ff9999;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d1d1;
+    -fx-table-cell-border-color: #eaeaea;
     -fx-padding: 10px;
 }
 
 .table-view .column-header {
-    -fx-background-color: #ff4d4d;
-    -fx-text-fill: white;
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
     -fx-font-weight: bold;
 }
 
 .table-view .table-row-cell {
     -fx-background-color: transparent;
+    -fx-text-fill: #333333;
 }
 
 .table-view .table-row-cell:odd {
-    -fx-background-color: #ffcccc;
+    -fx-background-color: #f9f9f9;
 }
 
 .table-view .table-row-cell:even {
-    -fx-background-color: #ffe6e6;
+    -fx-background-color: #ffffff;
 }
 
 .table-view .table-row-cell:selected {
-    -fx-background-color: #ff6666;
-    -fx-text-fill: white;
+    -fx-background-color: #cce7ff;
+    -fx-text-fill: #1a73e8;
 }
 
-.table-view .table-cell {
-    -fx-text-fill: black;
-    -fx-alignment: CENTER;
+.update-dialog {
+    -fx-background-color: #ffffff;
+}
+
+.update-dialog .label {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.update-dialog .combo-box, .update-dialog .date-picker {
+    -fx-pref-height: 35px;
+    -fx-font-size: 14px;
+}
+
+/* Styling for rectangleX with white border */
+.rectangleX {
+    -fx-background-color: #802645;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
 }
