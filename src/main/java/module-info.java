@@ -6,6 +6,10 @@ module com.esprit.espritrestau {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires java.sql;
+    requires itextpdf;
+
+    requires mysql.connector.j;
+    requires org.apache.poi.ooxml;
 
     opens com.esprit.espritrestau to javafx.fxml;
     opens com.esprit.espritrestau.controllers to javafx.fxml;

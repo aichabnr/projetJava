@@ -11,7 +11,8 @@ public class Abonnement {
     private Date dateFin;
     private double solde;
     private int idConsomateur;
-
+    private String nomConsomateur;
+    private String prenomConsomateur;
     public Abonnement(){
 
     }
@@ -33,6 +34,31 @@ public class Abonnement {
         this.dateFin = dateFin;
         this.solde = solde;
         this.idConsomateur = idConsomateur;
+    }
+
+    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, String nomConsomateur, String prenomConsomateur) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.solde = solde;
+        this.nomConsomateur = nomConsomateur;
+        this.prenomConsomateur = prenomConsomateur;
+    }
+
+    public String getNomConsomateur() {
+        return nomConsomateur;
+    }
+
+    public void setNomConsomateur(String nomConsomateur) {
+        this.nomConsomateur = nomConsomateur;
+    }
+
+    public String getPrenomConsomateur() {
+        return prenomConsomateur;
+    }
+
+    public void setPrenomConsomateur(String prenomConsomateur) {
+        this.prenomConsomateur = prenomConsomateur;
     }
 
     public int getId() {

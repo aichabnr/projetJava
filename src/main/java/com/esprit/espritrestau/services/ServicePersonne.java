@@ -130,9 +130,9 @@ public class ServicePersonne implements IService<Personne> {
         if ("EMPLOYEE".equals(type)) {
             return new Employee(id, nom, prenom, tel, password, rs.getString("post"), rs.getString("matriculeSocial"));
         } else if ("ETUDIANT".equals(type)) {
-            return new Consommateur(id, nom, prenom, tel, password, TPA.ETUDIANT);
+            return new Consommateur(id, nom, prenom, tel, password, TPA.ETUD);
         } else if ("PERSONNEL".equals(type)) {
-            return new Consommateur(id, nom, prenom, tel, password, TPA.PERSONNEL);
+            return new Consommateur(id, nom, prenom, tel, password, TPA.PERS);
         } else {
             return new Personne(id, nom, prenom, tel, password);
         }

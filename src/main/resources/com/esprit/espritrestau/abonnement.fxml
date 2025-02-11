@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,27 +14,38 @@
 
     <children>
         <TableView fx:id="tableAbonnements" layoutX="50.0" layoutY="355.0" prefHeight="374.0" prefWidth="1091.0" stylesheets="@../../../styles/style.css" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-
             <columns>
                 <TableColumn fx:id="colId" prefWidth="244.0" text="ID" />
                 <TableColumn fx:id="colDateDebut" prefWidth="205.0" text="Date Début" />
                 <TableColumn fx:id="colDateFin" prefWidth="236.0" text="Date Fin" />
                 <TableColumn fx:id="colSolde" prefWidth="206.0" text="Solde" />
-                <TableColumn fx:id="colIdConsomateur" prefWidth="190.0" text="ID Consommateur" />
+                <TableColumn fx:id="colConsommateur" prefWidth="190.0" text="Consommateur" />
+                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="100.0" />
             </columns>
-
         </TableView>
-      <HBox prefHeight="62.0" prefWidth="1191.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="114.0" layoutX="50.0" layoutY="141.0" stroke="#850f36" strokeType="INSIDE" width="1091.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-      <DatePicker id="dateFinInput" fx:id="dateDebutInput" layoutX="121.0" layoutY="186.0" promptText="Date Debut" stylesheets="@../../../styles/style.css" />
-      <DatePicker id="dateDebutInput" fx:id="dateFinInput" layoutX="392.0" layoutY="186.0" promptText="Expiration Date" stylesheets="@../../../styles/style.css" />
-      <TextField id="soldeInput" fx:id="soldeInput" layoutX="663.0" layoutY="186.0" prefHeight="42.0" prefWidth="174.0" promptText="Solde Initial" stylesheets="@../../../styles/style.css" />
-      <MenuButton id="consommateurInput" fx:id="consommateurInput" layoutX="897.0" layoutY="186.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../../../styles/style.css" text="MenuButton">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
-        </items>
-      </MenuButton>
-      <Button id="createAbonButton" fx:id="createAbonButton" layoutX="534.0" layoutY="279.0" mnemonicParsing="false" onAction="#addAbonnement" prefHeight="30.0" prefWidth="145.0" stylesheets="@../../../styles/style.css" text="Creer Abonnement" />
+
+        <HBox prefHeight="62.0" prefWidth="1191.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="114.0" layoutX="50.0" layoutY="141.0" stroke="#850f36" strokeType="INSIDE" width="1091.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+
+        <DatePicker fx:id="dateDebutInput" layoutX="121.0" layoutY="186.0" promptText="Date Début" stylesheets="@../../../styles/style.css" />
+        <DatePicker fx:id="dateFinInput" layoutX="392.0" layoutY="186.0" promptText="Date Fin" stylesheets="@../../../styles/style.css" />
+        <TextField fx:id="soldeInput" layoutX="663.0" layoutY="186.0" prefHeight="42.0" prefWidth="174.0" promptText="Solde Initial" stylesheets="@../../../styles/style.css" />
+        <MenuButton fx:id="consommateurInput" layoutX="897.0" layoutY="186.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" stylesheets="@../../../styles/style.css" text="Choisir un Consommateur" />
+
+        <Button fx:id="createAbonButton" layoutX="534.0" layoutY="279.0" mnemonicParsing="false" onAction="#addAbonnement"
+                prefHeight="30.0" prefWidth="150.0" stylesheets="@../../../styles/style.css" text="Créer Abonnement" />
+
+        <TextField fx:id="searchIdInput" layoutX="50.0" layoutY="320.0" prefWidth="100.0" promptText="par ID" />
+        <TextField fx:id="searchSoldeInput" layoutX="170.0" layoutY="320.0" prefWidth="100.0" promptText="par Solde" />
+        <TextField fx:id="searchConsommateurInput" layoutX="290.0" layoutY="320.0" prefWidth="200.0" promptText="par Consommateur" />
+
+        <Button fx:id="searchButton" layoutX="500.0" layoutY="320.0" onAction="#filterAbonnements"
+                prefHeight="30.0" prefWidth="145.0" stylesheets="@../../../styles/style.css" text="Search" />
+
+        <Button fx:id="downloadButton" layoutX="50.0" layoutY="270.0" mnemonicParsing="false" onAction="#downloadAbonnements"
+                prefHeight="30.0" prefWidth="150.0" stylesheets="@../../../styles/style.css" text="Télécharger en PDF" />
+        <Button fx:id="exportButton" layoutX="220.0" layoutY="270.0" mnemonicParsing="false" onAction="#exportToExcel"
+                prefHeight="30.0" prefWidth="150.0" stylesheets="@../../../styles/style.css" text="Exporter en Excel" />
     </children>
 </AnchorPane>

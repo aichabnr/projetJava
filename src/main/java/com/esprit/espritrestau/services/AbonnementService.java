@@ -24,7 +24,7 @@ public class AbonnementService implements IAbonnement<Abonnement> {
         String insertQuery = "INSERT INTO abonnement (dateDebut, dateFin, solde, idConsomateur) VALUES (?, ?, ?, ?)";
 
         try (PreparedStatement checkStatement = connection.prepareStatement(checkQuery)) {
-            // Vérifie si un abonnement avec cet ID existe déjà
+
             checkStatement.setInt(1, abonnement.getId());
             ResultSet resultSet = checkStatement.executeQuery();
 
@@ -69,17 +69,18 @@ public class AbonnementService implements IAbonnement<Abonnement> {
     @Override
     public List<Abonnement> getAllAbonnements() {
         List<Abonnement> abonnements = new ArrayList<>();
-        String query = "SELECT * FROM abonnement";
+        String query = "SELECT a.*, c.nom, c.prenom FROM abonnement a JOIN consommateur c ON a.idConsomateur = c.id";
+
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
             while (resultSet.next()) {
-                // Ajoute chaque abonnement trouvé à la liste
                 Abonnement abonnement = new Abonnement(
                         resultSet.getInt("id"),
                         resultSet.getDate("dateDebut"),
                         resultSet.getDate("dateFin"),
                         resultSet.getDouble("solde"),
-                        resultSet.getInt("idConsomateur")
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom")
                 );
                 abonnements.add(abonnement);
             }
@@ -88,8 +89,6 @@ public class AbonnementService implements IAbonnement<Abonnement> {
         }
         return abonnements.stream().toList();
     }
-
-
     @Override
     public void updateAbonnement(Abonnement abonnement) {
         String query = "UPDATE abonnement SET dateDebut = ?, dateFin = ?, solde = ?, idConsomateur = ? WHERE id = ?";
@@ -147,4 +146,6 @@ public class AbonnementService implements IAbonnement<Abonnement> {
             throw new RuntimeException("Erreur lors de la récupération du coût du repas", e);
         }
     }
+
+
 }
