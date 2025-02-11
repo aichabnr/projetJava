@@ -1,5 +1,6 @@
 package Controllers.Reclamation;
 
+import Controllers.EmailSender.EmailSender;
 import Entites.Proposition;
 import Entites.Reclamation;
 import Services.ServiceReclamation;
@@ -33,20 +34,29 @@ public class AjouterReclamation {
         this.serviceReclamation = new ServiceReclamation();
     }
     private Date sysDate() {
-        return new Date();  // Renvoie la date actuelle
+        return new Date();
     }
     @FXML
     void save(ActionEvent event) throws SQLException {
         String description = Description.getText();
         String objetText = Objet.getText();
-        Date date = sysDate();  // Appel à ta méthode sysDate()
+        Date date = sysDate();
 
         Reclamation rec1 = new Reclamation(date,description,objetText,1);
         if (description.isEmpty() || objetText.isEmpty()) {
             System.out.println("Veuillez remplir tous les champs.");
             return;
         }
-        serviceReclamation.ajouter(rec1); // Appel du service
+        serviceReclamation.ajouter(rec1);
+
+
+        String recipient = "aichabenromdhane06@gmail.com";
+        String subject = "Nouvelle Réclamation Ajoutée";
+        String content = "Une nouvelle réclamation a été ajoutée :\n\n"
+                + "Objet : " + objetText + "\n"
+                + "Description : " + description + "\n"
+                + "Date : " + date.toString();
+        EmailSender.sendEmail(recipient, subject, content);
         confirmationLabel.setVisible(true);
 
 

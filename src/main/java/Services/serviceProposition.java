@@ -174,4 +174,33 @@ public class serviceProposition  implements  IService <Proposition>{
         return propositions;
     }
 
+    public List<Proposition> chercherForconsomateur(String searchTerm) {
+        List<Proposition> propositions = new ArrayList<>();
+        String sql = "SELECT * FROM proposition WHERE (description LIKE ? OR objet LIKE ?) AND idConsomateur = 1";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            // Utilisation du '%' pour rechercher des termes contenant le mot-clé
+            String searchPattern = "%" + searchTerm + "%";
+            stmt.setString(1, searchPattern);
+            stmt.setString(2, searchPattern);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Proposition proposition = new Proposition();
+                    proposition.setId(rs.getInt("id"));
+                    proposition.setDescription(rs.getString("description"));
+                    proposition.setObjet(rs.getString("objet"));
+                    proposition.setIdConsomateur(rs.getInt("idConsomateur"));
+                    propositions.add(proposition);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while searching propositions: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return propositions;
+    }
+
+
 }

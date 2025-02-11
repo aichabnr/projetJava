@@ -183,5 +183,33 @@ public class ServiceReclamation implements IService <Reclamation>{
 
         return reclamations;
     }
+    public List<Reclamation> chercherForConosmateur(String searchTerm) {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String sql = "SELECT * FROM reclamation WHERE (objet LIKE ? OR description LIKE ?) AND idConsomateur = 1";
 
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, "%" + searchTerm + "%");  // Recherche partielle dans objet
+            stmt.setString(2, "%" + searchTerm + "%");  // Recherche partielle dans description
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Reclamation reclamation = new Reclamation();
+                    reclamation.setId(rs.getInt("id"));
+                    java.sql.Date sqlDate = rs.getDate("date");
+                    if (sqlDate != null) {
+                        reclamation.setDate(new java.util.Date(sqlDate.getTime()));
+                    }
+                    reclamation.setDescription(rs.getString("description"));
+                    reclamation.setObjet(rs.getString("objet"));
+                    reclamation.setIdConsomateur(rs.getInt("idConsomateur"));
+                    reclamations.add(reclamation);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error while searching reclamations: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return reclamations;
+    }
 }

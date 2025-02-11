@@ -70,7 +70,7 @@ public class AfficherReclamations {
             ServiceReclamation reclamationService = new ServiceReclamation();
 
             // Charger toutes les réclamations
-            List<Reclamation> l1 = reclamationService.getAll();
+            List<Reclamation> l1 = reclamationService.getByIdConsomateur(1);
             ObservableList<Reclamation> obse = FXCollections.observableList(l1);
             tableReclamation.setItems(obse);
 
@@ -241,9 +241,9 @@ public class AfficherReclamations {
         try {
             List<Reclamation> reclamations;
             if (searchTerm.isEmpty()) {
-                reclamations = serviceReclamation.getAll();
+                reclamations = serviceReclamation.getByIdConsomateur(1);
             } else {
-                reclamations = serviceReclamation.chercher(searchTerm);
+                reclamations = serviceReclamation.chercherForConosmateur(searchTerm);
             }
 
             ObservableList<Reclamation> observableList = FXCollections.observableArrayList(reclamations);

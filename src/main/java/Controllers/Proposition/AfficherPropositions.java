@@ -75,7 +75,7 @@ public class AfficherPropositions {
 
         try {
             // Récupérer toutes les propositions
-            List<Proposition> propositions = serviceProposition.getAll();
+            List<Proposition> propositions = serviceProposition.getByIdConsomateur(1);
 
             // Convertir la liste en ObservableList
             ObservableList<Proposition> observableList = FXCollections.observableArrayList(propositions);
@@ -253,9 +253,9 @@ public class AfficherPropositions {
         try {
             List<Proposition> propositions;
             if (searchTerm.isEmpty()) {
-                propositions = serviceProposition.getAll();
+                propositions = serviceProposition.getByIdConsomateur(1);
             } else {
-                propositions = serviceProposition.chercher(searchTerm);
+                propositions = serviceProposition.chercherForconsomateur(searchTerm);
             }
 
             ObservableList<Proposition> observableList = FXCollections.observableArrayList(propositions);

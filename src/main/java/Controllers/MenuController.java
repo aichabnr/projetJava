@@ -28,7 +28,7 @@ public class MenuController {
     void openProposition(ActionEvent event) {
         try {
             // Charger le fichier FXML de la proposition
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/afficherPropositions.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Proposition/afficherPropositionsForAdmin.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
@@ -47,7 +47,7 @@ public class MenuController {
     @FXML
     void openReclamation(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamations.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamationsForAdmin.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);

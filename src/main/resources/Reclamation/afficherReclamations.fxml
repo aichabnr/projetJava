@@ -26,8 +26,8 @@
                                     <TableColumn fx:id="colconsomateur" minWidth="53.0" prefWidth="126.0" text="consomateur" />
                                     <TableColumn fx:id="colDescription" prefWidth="206.0" text="Description" />
                                     <TableColumn fx:id="colDate" prefWidth="124.0" text="Date" />
-                                    <TableColumn fx:id="colUpdate" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Actions" />
-                                    <TableColumn fx:id="colDelet" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Actions" />
+                                    <TableColumn fx:id="colUpdate" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Modifier" />
+                                    <TableColumn fx:id="colDelet" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Supprimer" />
                                  </columns>
                               </TableView>
                            </children>

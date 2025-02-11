@@ -16,9 +16,9 @@ public class Test extends Application {
     public void start(Stage primaryStage) {
         try {
           /////////////Admin
-         ///:   FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
-////////////////////Consomateur
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menuConsumer.fxml"));
+ FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
+////Consomateur
+////////////FXMLLoader loader = new FXMLLoader(getClass().getResource("/menuConsumer.fxml"));
 
             AnchorPane root = loader.load();
 
