@@ -34,7 +34,7 @@ public class PersonneService {
                 return false;
             }
         } else if (personne instanceof Consommateur) {
-            // First, insert into the personne table
+
             String queryPersonne = "INSERT INTO personne (nom, prenom, Tel, password) VALUES (?, ?, ?, ?)";
             try (PreparedStatement prePersonne = con.prepareStatement(queryPersonne, Statement.RETURN_GENERATED_KEYS)) {
                 prePersonne.setString(1, personne.getNom());
@@ -43,7 +43,7 @@ public class PersonneService {
                 prePersonne.setString(4, personne.getPassword());
                 prePersonne.executeUpdate();
 
-                // Get the generated ID
+
                 ResultSet generatedKeys = prePersonne.getGeneratedKeys();
                 int personneId;
                 if (generatedKeys.next()) {

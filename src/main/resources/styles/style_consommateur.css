@@ -29,7 +29,7 @@
 /* Table row alignment */
 .table-cell {
     -fx-alignment: CENTER;
-    -fx-border-color: #850f36; /* Red Cell Borders */
+    -fx-border-color: white;
 }
 
 .table-row-cell:selected {

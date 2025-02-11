@@ -133,8 +133,8 @@ public class ConsommateurController {
     private void loadConsommateurs() {
         try {
             System.out.println("Loading Consumers...");
-            // Use the new getAllConsommateurs() method
-            List<Consommateur> consommateurs = personneService.getAllConsommateurs(); // NEW METHOD
+
+            List<Consommateur> consommateurs = personneService.getAllConsommateurs();
 
             consommateurList.clear();
             consommateurList.addAll(consommateurs);
@@ -254,6 +254,7 @@ public class ConsommateurController {
         if (nom.isEmpty() || prenom.isEmpty() || tel.isEmpty() || password.isEmpty() || selectedType == null) {
             showAlert("Erreur", "Veuillez remplir tous les champs.");
             return;
+
         }
 
         Consommateur consommateur = new Consommateur(0, nom, prenom, tel, password, selectedType);
@@ -284,3 +285,4 @@ public class ConsommateurController {
         alert.showAndWait();
     }
 }
+
