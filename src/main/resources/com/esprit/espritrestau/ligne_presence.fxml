@@ -27,6 +27,14 @@
                     </font>
                 </Text>
                 <ComboBox fx:id="consommateurComboBox" layoutX="417.0" layoutY="128.0" prefHeight="42.0" prefWidth="253.0" promptText="Consommateur" />
+              <!-- Add these to your FXML file -->
+              <DatePicker fx:id="startDatePicker" layoutX="347.0" layoutY="698.0" prefHeight="44.0" prefWidth="234.0" promptText="Start Date" />
+              <DatePicker fx:id="endDatePicker" layoutX="597.0" layoutY="699.0" prefHeight="44.0" prefWidth="234.0" promptText="End Date" />
+              <Button fx:id="printButton" disable="true" layoutX="843.0" layoutY="700.0" onAction="#handlePrintButton" prefHeight="41.0" prefWidth="156.0" text="Print PDF" textAlignment="CENTER">
+                  <font>
+                      <Font name="Baskerville Old Face" size="18.0" />
+                  </font>
+              </Button>
             </children>
         </Pane>
         <TableView fx:id="presenceTableView" layoutX="47.0" layoutY="297.0" prefHeight="426.0" prefWidth="1391.0" stylesheets="@../../../styles/ligPre-styles.css" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="28.0">

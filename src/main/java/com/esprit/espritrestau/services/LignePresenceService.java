@@ -6,6 +6,7 @@ import com.esprit.espritrestau.entities.Consommateur; // Import Consommateur ent
 import com.esprit.espritrestau.utils.DataSource;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -147,5 +148,26 @@ public class LignePresenceService implements ILignePresence<Presence> {
             e.printStackTrace();
         }
         return null;
+    }
+    public List<Presence> getPresencesBetweenDates(LocalDate startDate, LocalDate endDate) {
+        List<Presence> presenceList = new ArrayList<>();
+        String query = "SELECT * FROM ligpresence WHERE date BETWEEN ? AND ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setDate(1, java.sql.Date.valueOf(startDate));
+            pstmt.setDate(2, java.sql.Date.valueOf(endDate));
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                Presence presence = new Presence(
+                        rs.getInt("id"),
+                        rs.getDate("date"),
+                        rs.getInt("idRepas"),
+                        rs.getInt("idConsomateur")
+                );
+                presenceList.add(presence);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return presenceList;
     }
 }

@@ -7,11 +7,18 @@ import com.esprit.espritrestau.services.LignePresenceService;
 import com.esprit.espritrestau.utils.DataSource;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
+import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -26,6 +33,14 @@ public class LignePresenceController {
     @FXML
     private TableColumn<Presence, Integer> idColumn;
 
+    @FXML
+    private DatePicker startDatePicker;
+
+    @FXML
+    private DatePicker endDatePicker;
+
+    @FXML
+    private Button printButton;
 
     @FXML
     private TableColumn<Presence, Date> dateColumn;
@@ -69,25 +84,146 @@ public class LignePresenceController {
             e.printStackTrace();
         }
 
-        idColumn.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
+        // Set up cell value factories for the TableView columns
         dateColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDate()));
+
         idRepasColumn.setCellValueFactory(cellData -> {
-            Repas repas = service.getRepasById(cellData.getValue().getIdRepas());
-            return new SimpleObjectProperty<>(repas != null ? repas.getNom() : "N/A");
+            int repasId = cellData.getValue().getIdRepas();
+            Repas repas = service.getRepasById(repasId); // Fetch Repas object
+            return new SimpleStringProperty(repas != null ? repas.getNom() : "Unknown");
         });
 
         idConsomateurColumn.setCellValueFactory(cellData -> {
-            Consommateur consommateur = service.getConsommateurById(cellData.getValue().getIdConsomateur());
-            return new SimpleObjectProperty<>(
-                    consommateur != null ? consommateur.getNom() + " " + consommateur.getPrenom() : "N/A"
-            );
+            int consommateurId = cellData.getValue().getIdConsomateur();
+            Consommateur consommateur = service.getConsommateurById(consommateurId); // Fetch Consommateur object
+            return new SimpleStringProperty(consommateur != null ? consommateur.getNom() + " " + consommateur.getPrenom() : "Unknown");
         });
 
+        // Initialize modify and delete columns
         setupModifyColumn();
         setupDeleteColumn();
+
+        // Adjust column widths
         adjustColumnWidths();
+
+        // Set up date pickers to enable/disable the print button based on date selection
+        startDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> checkDates());
+        endDatePicker.valueProperty().addListener((observable, oldValue, newValue) -> checkDates());
+    }
+    private void checkDates() {
+        LocalDate startDate = startDatePicker.getValue();
+        LocalDate endDate = endDatePicker.getValue();
+
+        if (startDate != null && endDate != null) {
+            printButton.setDisable(false);
+        } else {
+            printButton.setDisable(true);
+        }
     }
 
+    @FXML
+    private void handlePrintButton() {
+        LocalDate startDate = startDatePicker.getValue();
+        LocalDate endDate = endDatePicker.getValue();
+
+        if (startDate != null && endDate != null) {
+            List<Presence> presences = service.getPresencesBetweenDates(startDate, endDate);
+            printPresencesToPDF(presences);
+        }
+    }
+    private void printPresencesToPDF(List<Presence> presences) {
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            PDPageContentStream contentStream = new PDPageContentStream(document, page);
+            contentStream.setFont(PDType1Font.HELVETICA, 12);
+
+            float margin = 50;
+            float yStart = page.getMediaBox().getHeight() - margin;
+            float yPosition = yStart;
+            float leading = 14.5f;
+
+            // Title
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(margin, yPosition);
+            contentStream.showText("List of Presences");
+            contentStream.endText();
+            yPosition -= leading * 2;
+
+            // Table Header
+            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+            contentStream.beginText();
+            contentStream.newLineAtOffset(margin, yPosition);
+            contentStream.showText("ID       Date               Repas Name                 Consommateur Name");
+            contentStream.endText();
+            yPosition -= leading;
+
+            // Draw header border
+            drawLine(contentStream, margin, yPosition, margin + 400, yPosition);
+
+            // Add each presence
+            for (Presence presence : presences) {
+                Repas repas = service.getRepasById(presence.getIdRepas());
+                Consommateur consommateur = service.getConsommateurById(presence.getIdConsomateur());
+
+                String repasName = repas != null ? repas.getNom() : "Unknown";
+                String consommateurName = consommateur != null ? consommateur.getNom() + " " + consommateur.getPrenom() : "Unknown";
+
+                // Format the line
+                String line = String.format("%-8d %-18s %-25s %s",
+                        presence.getId(),
+                        presence.getDate().toString(),
+                        repasName,
+                        consommateurName);
+
+                contentStream.beginText();
+                contentStream.newLineAtOffset(margin, yPosition);
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.showText(line);
+                contentStream.endText();
+                yPosition -= leading;
+
+                // Draw a line below each row
+                drawLine(contentStream, margin, yPosition + 2, margin + 400, yPosition + 2);
+
+                // Check for new page
+                if (yPosition <= margin) {
+                    contentStream.close();
+                    page = new PDPage();
+                    document.addPage(page);
+                    contentStream = new PDPageContentStream(document, page);
+                    contentStream.setFont(PDType1Font.HELVETICA, 12);
+                    yPosition = yStart;
+
+                    // Re-add headers on new page
+                    contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                    contentStream.beginText();
+                    contentStream.newLineAtOffset(margin, yPosition);
+                    contentStream.showText("ID       Date               Repas Name                 Consommateur Name");
+                    contentStream.endText();
+                    yPosition -= leading;
+                    drawLine(contentStream, margin, yPosition, margin + 400, yPosition);
+                }
+            }
+
+            // Close the content stream
+            contentStream.close();
+            document.save("Presences.pdf");
+            System.out.println("PDF created successfully!");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to draw lines
+    private void drawLine(PDPageContentStream contentStream, float x1, float y1, float x2, float y2) throws IOException {
+        contentStream.moveTo(x1, y1);
+        contentStream.lineTo(x2, y2);
+        contentStream.stroke();
+    }
     private void setupModifyColumn() {
         modifyColumn.setCellFactory(param -> new TableCell<>() {
             private final Button modifyButton = new Button("Modify");
