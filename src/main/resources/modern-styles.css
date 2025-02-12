@@ -1,0 +1,102 @@
+.root {
+    -accent-color: #850f36;
+    -background-color: #f4f6f7;
+    -text-color: #850f36;
+    -input-background: #ffffff;
+    -border-color: #ecf0f1;
+
+    -main-font: 'Roboto', 'Segoe UI', sans-serif;
+}
+
+.root {
+    -fx-font-family: -main-font;
+    -fx-background-color: -background-color;
+}
+
+.app-header {
+    -fx-background-color: -primary-color;
+    -fx-padding: 15;
+}
+
+.app-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+
+.input-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-padding: 20;
+}
+
+.input-grid {
+    -fx-background-color: transparent;
+}
+
+.input-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-color;
+}
+
+.input-field, .date-picker {
+    -fx-background-color: -border-color;
+    -fx-background-radius: 5;
+    -fx-padding: 10 15;
+}
+
+.action-buttons-container {
+    -fx-padding: 15 0 0 0;
+}
+
+.action-buttons-container .button {
+    -fx-background-radius: 20;
+    -fx-padding: 10 15;
+    -fx-font-weight: bold;
+}
+
+.btn-primary { -fx-background-color: -primary-color; }
+.btn-secondary { -fx-background-color: -secondary-color; }
+.btn-danger { -fx-background-color: -danger-color; }
+.btn-neutral { -fx-background-color: -neutral-color; }
+.btn-accent { -fx-background-color: -accent-color; }
+
+.action-buttons-container .button:hover {
+    -fx-opacity: 0.9;
+}
+
+.stats-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.stats-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: -neutral-color;
+}
+
+.stats-value {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -text-color;
+}
+
+.data-table {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.data-table .column-header {
+    -fx-background-color: -border-color;
+    -fx-font-weight: bold;
+}
+
+.placeholder-text {
+    -fx-font-style: italic;
+    -fx-text-fill: -neutral-color;
+}

@@ -1,0 +1,39 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1" date="1739390824748" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 2/12/2025 9:06 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Entites/TPA.class" />
+    <option name="AFTER_PATH" value="target/classes/Entites/TPA.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/TPA.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Entites/Reclamation.class" />
+    <option name="AFTER_PATH" value="target/classes/Entites/Reclamation.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/Reclamation.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Entites/Proposition.class" />
+    <option name="AFTER_PATH" value="target/classes/Entites/Proposition.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/Proposition.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Services/serviceProposition.class" />
+    <option name="AFTER_PATH" value="target/classes/Services/serviceProposition.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/serviceProposition.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Services/ServiceReclamation.class" />
+    <option name="AFTER_PATH" value="target/classes/Services/ServiceReclamation.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/ServiceReclamation.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Utils/DataSource.class" />
+    <option name="AFTER_PATH" value="target/classes/Utils/DataSource.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/DataSource.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Entites/Repas.class" />
+    <option name="AFTER_PATH" value="target/classes/Entites/Repas.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_12_2025_9_06_PM_[Changes]1/Repas.class" />
+  </binary>
+</changelist>

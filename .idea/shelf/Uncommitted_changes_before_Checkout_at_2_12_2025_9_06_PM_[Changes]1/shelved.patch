@@ -1,0 +1,30 @@
+Index: src/main/java/Utils/Test.java
+===================================================================
+diff --git a/src/main/java/Utils/Test.java b/src/main/java/Utils/Test.java
+deleted file mode 100644
+--- a/src/main/java/Utils/Test.java	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ /dev/null	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
+@@ -1,9 +0,0 @@
+-package Utils;
+-
+-public class Test {
+-
+-
+-    public static void main(String[] args) {
+-    DataSource conn =new DataSource();
+-    }
+-}
+Index: .idea/vcs.xml
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1738268143183)
++++ b/.idea/vcs.xml	(date 1738268143183)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file

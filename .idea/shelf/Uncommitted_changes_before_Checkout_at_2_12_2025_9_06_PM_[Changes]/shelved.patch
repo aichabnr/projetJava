@@ -1,0 +1,190 @@
+Index: src/main/java/Utils/DataSource.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Utils;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class DataSource {\r\n    private Connection conn;\r\n\r\n    private static String url = \"jdbc:mysql://localhost:3306/restoesprit\";\r\n    private  String user = \"root\";\r\n    private  String pass = \"\";\r\n    private static DataSource data;\r\n\r\n     DataSource() {\r\n\r\n        try {\r\n            conn= DriverManager.getConnection(url,user,pass);\r\n            System.out.println(\"connexion établie\");\r\n        } catch (SQLException e) {\r\n            System.out.println(e);\r\n        }\r\n    }\r\n\r\n    public Connection getConn() {\r\n        return conn;\r\n    }\r\n\r\n    public static DataSource getInstance(){\r\n        if(data == null){\r\n\r\n            data = new DataSource();\r\n        }\r\n        return data;\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/Utils/DataSource.java b/src/main/java/Utils/DataSource.java
+--- a/src/main/java/Utils/DataSource.java	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ b/src/main/java/Utils/DataSource.java	(date 1738313415667)
+@@ -1,21 +1,18 @@
+ package Utils;
+-
+-import java.sql.Connection;
+-import java.sql.DriverManager;
+-import java.sql.SQLException;
+-
++import java.sql.*;
+ public class DataSource {
++
+     private Connection conn;
+ 
+-    private static String url = "jdbc:mysql://localhost:3306/restoesprit";
++    private  String url = "jdbc:mysql://localhost:3306/restoesprit";
+     private  String user = "root";
+     private  String pass = "";
+     private static DataSource data;
+ 
+-     DataSource() {
++    private DataSource() {
+ 
+         try {
+-            conn= DriverManager.getConnection(url,user,pass);
++            conn=DriverManager.getConnection(url,user,pass);
+             System.out.println("connexion établie");
+         } catch (SQLException e) {
+             System.out.println(e);
+@@ -33,4 +30,4 @@
+         }
+         return data;
+     }
+-}
++}
+\ No newline at end of file
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>org.example</groupId>\r\n    <artifactId>JAVAJFX</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n\r\n    <properties>\r\n        <maven.compiler.source>17</maven.compiler.source>\r\n        <maven.compiler.target>17</maven.compiler.target>\r\n    </properties>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>mysql</groupId>\r\n            <artifactId>mysql-connector-java</artifactId>\r\n            <version>8.0.33</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-fxml</artifactId>\r\n            <version>21.0.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.openjfx</groupId>\r\n            <artifactId>javafx-controls</artifactId>\r\n            <version>21.0.2</version>\r\n        </dependency>\r\n    </dependencies>\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.openjfx</groupId>\r\n                <artifactId>javafx-maven-plugin</artifactId>\r\n                <version>0.0.8</version>\r\n                <configuration>\r\n                    <mainClass> Test.Main </mainClass>\r\n                </configuration>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>\r\n
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ b/pom.xml	(date 1739009874669)
+@@ -14,11 +14,24 @@
+     </properties>
+ 
+     <dependencies>
++        <!-- MySQL Connector -->
+         <dependency>
+             <groupId>mysql</groupId>
+             <artifactId>mysql-connector-java</artifactId>
+             <version>8.0.33</version>
+         </dependency>
++
++        <!-- JavaFX Dependencies -->
++        <dependency>
++            <groupId>org.openjfx</groupId>
++            <artifactId>javafx-base</artifactId>
++            <version>21.0.2</version>
++        </dependency>
++        <dependency>
++            <groupId>org.openjfx</groupId>
++            <artifactId>javafx-graphics</artifactId>
++            <version>21.0.2</version>
++        </dependency>
+         <dependency>
+             <groupId>org.openjfx</groupId>
+             <artifactId>javafx-fxml</artifactId>
+@@ -30,14 +43,26 @@
+             <version>21.0.2</version>
+         </dependency>
+     </dependencies>
++
+     <build>
+         <plugins>
++            <!-- Maven Compiler Plugin -->
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-compiler-plugin</artifactId>
++                <version>3.8.1</version>
++                <configuration>
++                    <release>17</release>
++                </configuration>
++            </plugin>
++
++            <!-- JavaFX Maven Plugin -->
+             <plugin>
+                 <groupId>org.openjfx</groupId>
+                 <artifactId>javafx-maven-plugin</artifactId>
+                 <version>0.0.8</version>
+                 <configuration>
+-                    <mainClass> Test.Main </mainClass>
++                    <mainClass>Main</mainClass> <!-- Your main class name here -->
+                 </configuration>
+             </plugin>
+         </plugins>
+Index: src/main/java/Entites/Repas.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Entites;\r\n\r\nimport java.util.Date;\r\n\r\npublic class Repas {\r\n    private int id;\r\n    private Date date;\r\n    private String nom;\r\n    private int nbRepas;\r\n    private double cout;\r\n\r\n    public Repas() {\r\n\r\n    }\r\n    public Repas(int id, Date date, String nom, int nbRepas, double cout) {\r\n        this.id = id;\r\n        this.date = date;\r\n        this.nom = nom;\r\n        this.nbRepas = nbRepas;\r\n        this.cout = cout;\r\n    }\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public int getNbRepas() {\r\n        return nbRepas;\r\n    }\r\n\r\n    public void setNbRepas(int nbRepas) {\r\n        this.nbRepas = nbRepas;\r\n    }\r\n\r\n    public double getCout() {\r\n        return cout;\r\n    }\r\n\r\n    public void setCout(double cout) {\r\n        this.cout = cout;\r\n    }\r\n\r\n    public Date getDate() {\r\n        return date;\r\n    }\r\n\r\n    public void setDate(Date date) {\r\n        this.date = date;\r\n    }\r\n\r\n    public String getNom() {\r\n        return nom;\r\n    }\r\n\r\n    public void setNom(String nom) {\r\n        this.nom = nom;\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/Entites/Repas.java b/src/main/java/Entites/Repas.java
+--- a/src/main/java/Entites/Repas.java	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ b/src/main/java/Entites/Repas.java	(date 1739020334024)
+@@ -8,16 +8,25 @@
+     private String nom;
+     private int nbRepas;
+     private double cout;
++    private double prix;
+ 
+-    public Repas() {
++    public Repas() {}
+ 
+-    }
+-    public Repas(int id, Date date, String nom, int nbRepas, double cout) {
++    public Repas(int id, Date date, String nom, int nbRepas, double cout, double prix) {
+         this.id = id;
+         this.date = date;
+         this.nom = nom;
+         this.nbRepas = nbRepas;
+         this.cout = cout;
++        this.prix = prix;
++    }
++
++    public double getPrix() {
++        return prix;
++    }
++
++    public void setPrix(double prix) {
++        this.prix = prix;
+     }
+ 
+     public int getId() {
+@@ -59,4 +68,8 @@
+     public void setNom(String nom) {
+         this.nom = nom;
+     }
+-}
++
++    public double getRevenue() {
++        return nbRepas * prix;
++    }
++}
+\ No newline at end of file
+Index: src/main/java/Services/IService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Services;\r\n\r\nimport Entites.Reclamation;\r\n\r\nimport java.sql.SQLException;\r\nimport java.util.List;\r\n\r\npublic interface IService <T> {\r\n    void ajouter(T t) throws SQLException;\r\n\r\n    Boolean supprimer(int id) throws SQLException;\r\n    void update(T t) throws SQLException;\r\n    T getById(int id) throws SQLException;\r\n    List<T> getAll() throws SQLException;\r\n    List<T> getByIdConsomateur(int idConsomateur);\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/Services/IService.java b/src/main/java/Services/IService.java
+--- a/src/main/java/Services/IService.java	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ b/src/main/java/Services/IService.java	(date 1738329607371)
+@@ -1,11 +1,9 @@
+ package Services;
+ 
+-import Entites.Reclamation;
+-
+ import java.sql.SQLException;
+ import java.util.List;
+ 
+-public interface IService <T> {
++public interface IService<T> {
+     void ajouter(T t) throws SQLException;
+ 
+     Boolean supprimer(int id) throws SQLException;
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"17\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 53c184838ae744dc6cebb4c9b076b53103c7e204)
++++ b/.idea/misc.xml	(date 1738268143179)
+@@ -8,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="jbrsdk-17" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
