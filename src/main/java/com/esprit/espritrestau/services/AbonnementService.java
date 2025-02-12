@@ -95,7 +95,9 @@ public class AbonnementService implements IAbonnement<Abonnement> {
                 Consommateur consommateur = new Consommateur(
                         resultSet.getInt("id"),
                         resultSet.getString("nom"),
-                        resultSet.getString("prenom")
+                        resultSet.getString("prenom"),
+                        resultSet.getString("tel"),
+                        resultSet.getString("password")
                 );
                 consommateurs.add(consommateur);
             }

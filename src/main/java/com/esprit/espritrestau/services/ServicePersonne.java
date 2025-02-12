@@ -25,7 +25,7 @@ public class ServicePersonne implements IService<Personne> {
         try (PreparedStatement pre = con.prepareStatement(req)) {
             pre.setString(1, personne.getNom());
             pre.setString(2, personne.getPrenom());
-            pre.setInt(3, personne.getTel());
+            pre.setString(3, personne.getTel());
             pre.setString(4, personne.getPassword());
 
             if (personne instanceof Employee) {
@@ -67,7 +67,7 @@ public class ServicePersonne implements IService<Personne> {
         try (PreparedStatement pre = con.prepareStatement(req)) {
             pre.setString(1, personne.getNom());
             pre.setString(2, personne.getPrenom());
-            pre.setInt(3, personne.getTel());
+            pre.setString(3, personne.getTel());
             pre.setString(4, personne.getPassword());
 
             if (personne instanceof Employee) {
@@ -123,16 +123,16 @@ public class ServicePersonne implements IService<Personne> {
         int id = rs.getInt("id");
         String nom = rs.getString("nom");
         String prenom = rs.getString("prenom");
-        int tel = rs.getInt("tel");
+        String tel = rs.getString("tel");
         String password = rs.getString("password");
         String type = rs.getString("type");
 
         if ("EMPLOYEE".equals(type)) {
             return new Employee(id, nom, prenom, tel, password, rs.getString("post"), rs.getString("matriculeSocial"));
         } else if ("ETUDIANT".equals(type)) {
-            return new Consommateur(id, nom, prenom, tel, password, TPA.ETUD);
+            return new Consommateur(id, nom, prenom, tel, password, TPA.ETUDIANT);
         } else if ("PERSONNEL".equals(type)) {
-            return new Consommateur(id, nom, prenom, tel, password, TPA.PERS);
+            return new Consommateur(id, nom, prenom, tel, password, TPA.PERSONNEL);
         } else {
             return new Personne(id, nom, prenom, tel, password);
         }

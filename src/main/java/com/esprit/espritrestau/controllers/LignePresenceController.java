@@ -373,7 +373,7 @@ public class LignePresenceController {
                         rs.getInt("id"),
                         rs.getString("nom"),
                         rs.getString("prenom"),
-                        rs.getInt("tel"),
+                        rs.getString("tel"),
                         rs.getString("password"),
                         null
                 );

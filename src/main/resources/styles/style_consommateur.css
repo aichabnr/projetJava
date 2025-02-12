@@ -1,0 +1,102 @@
+/* Apply to the TableView */
+.table-view {
+    -fx-background-color: #f8e7ee;
+    -fx-border-color: #850f36; /* Red Border */
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-padding: 5px;
+    -fx-table-cell-border-color: #850f36; /* Red Cell Borders */
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+/* Column header styles */
+.table-view .column-header-background {
+    -fx-background-color: #850f36;
+}
+
+.table-view .column-header {
+    -fx-border-color: #850f36; /* Red Column Header Border */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #850f36; /* Red Text for Column Headers */
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-alignment: CENTER;
+}
+
+/* Table row alignment */
+.table-cell {
+    -fx-alignment: CENTER;
+    -fx-border-color: white;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #850f36;
+    -fx-text-fill: white;
+}
+
+/* Default Button Style */
+.button {
+    -fx-background-color: #850f36;
+    -fx-text-fill: white;
+    -fx-padding: 5 10 5 10;
+    -fx-border-radius: 3px;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-transition: background-color 0.3s ease;
+    -fx-min-width: 50px;
+    -fx-min-height: 20px;
+}
+
+/* Hover Effect */
+.button:hover {
+    -fx-background-color: #a3345b;
+}
+
+/* Pressed (Active) Effect */
+.button:pressed {
+    -fx-background-color: #660a27;
+}
+
+/* Focused Button (Optional) */
+.button:focused {
+    -fx-border-color: #ffd700;
+}
+
+.error-border {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+/* Style for TextField */
+.text-field {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #850f36;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+/* Style for PasswordField (inherits from text-field) */
+.password-field {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #850f36;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+/* Style for MenuButton */
+.menu-button {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #850f36;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
