@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Repas.AfficherRepasEtudiant">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TitledPane fx:id="titledPane" animated="false" style="-fx-background-color: #ffffff;" styleClass="primary" text="Repas" textFill="#850f36" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <AnchorPane prefHeight="423.0" prefWidth="679.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                                    <children>
+                                        <TableView fx:id="tableStudent" layoutX="11.0" layoutY="44.0" prefHeight="246.0" prefWidth="542.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="44.0">
+                                            <columns>
+                                                <TableColumn fx:id="colId" maxWidth="6000.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
+                                                <TableColumn fx:id="colNom" prefWidth="162.0" text="nom" />
+                                                <TableColumn fx:id="colDate" maxWidth="4000.0" minWidth="53.0" prefWidth="141.0" text="Date" />
+                                                <TableColumn fx:id="colCout" maxWidth="170.0" minWidth="100.0" prefWidth="110.0" text="Cout" />
+                                                <TableColumn fx:id="colNbr" maxWidth="198.0" minWidth="100.0" prefWidth="128.0" text="Nombre repas " />
+                                            </columns>
+                                        </TableView>
+                                        <ButtonBar layoutX="342.0" prefHeight="40.0" prefWidth="200.0">
+                                            <buttons>
+                                    <Button fx:id="chatbot" mnemonicParsing="false" onAction="#gochat" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="ChatBot" textFill="WHITE" />
+                                            </buttons>
+                                        </ButtonBar>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="21.6" layoutY="20.8" prefHeight="51.0" prefWidth="563.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                    <children>
+                                        <AnchorPane prefHeight="33.0" prefWidth="771.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="2.0">
+                                            <children>
+                                                <TextField fx:id="txtSearch" layoutY="2.0" prefHeight="33.0" prefWidth="407.0" promptText="Rechercher un repas..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
+                                                <Button fx:id="btnSearch" layoutX="695.0" layoutY="2.0" onAction="#searchRepas" style="-fx-background-color: #850f36; -fx-text-fill: white;" text="Rechercher" />
+                                            </children>
+                                        </AnchorPane>
+
+                                        <AnchorPane prefHeight="29.0" prefWidth="85.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
+                                 <children>
+                                                <Button fx:id="chercher" layoutX="22.0" layoutY="3.0" mnemonicParsing="false" onAction="#searchRepas" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="Chercher" textFill="WHITE" />
+                                 </children>
+                                        </AnchorPane>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                    <font>
+                        <Font name="Arial Bold" size="13.0" />
+                    </font>
+                </TitledPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="884.0" prefWidth="843.0" spacing="15" stylesheets="@modern-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Finance.FinanceController">
+
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
+
+    <HBox spacing="20" styleClass="stats-container">
+        <VBox HBox.hgrow="ALWAYS">
+            <Label styleClass="stats-label" text="Total Repas" />
+            <Label fx:id="totalMealsLabel" styleClass="stats-value" text="0" />
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <Label styleClass="stats-label" text="Total Cout" />
+            <Label fx:id="totalCostLabel" styleClass="stats-value" text="0.00 TND" />
+        </VBox>
+        <VBox HBox.hgrow="ALWAYS">
+            <Label styleClass="stats-label" text="Total Revenue" />
+            <Label fx:id="totalRevenueLabel" styleClass="stats-value" text="0.00 TND" />
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="repasTable" styleClass="data-table" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" minWidth="50" text="ID" />
+            <TableColumn fx:id="dateColumn" minWidth="100" text="Date" />
+            <TableColumn fx:id="nomColumn" minWidth="200" text="Nom" />
+            <TableColumn fx:id="nbRepasColumn" minWidth="120" text="Repas" />
+            <TableColumn fx:id="coutColumn" minWidth="100" text="Cout" />
+            <TableColumn fx:id="revenueColumn1" minWidth="100" text="Prix" />
+            <TableColumn fx:id="revenueColumn" minWidth="100" text="Revenue" />
+        </columns>
+        <placeholder>
+            <Label styleClass="placeholder-text" text="Pas de repas maintenant" />
+        </placeholder>
+    </TableView>
+
+    <HBox alignment="CENTER" spacing="20">
+        <BarChart fx:id="expenseRevenueChart" legendVisible="true" prefHeight="300.0" prefWidth="400.0" title="Revenue vs Expenses">
+            <xAxis>
+                <CategoryAxis label="Category" fx:id="xAxis" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" label="Amount (TND)" />
+            </yAxis>
+        </BarChart>
+
+        <PieChart fx:id="mealDistributionChart" legendVisible="true" prefHeight="300.0" prefWidth="400.0" title="Repas" />
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="20">
+        <Button fx:id="visualizeButton" onAction="#handleVisualize" styleClass="btn-accent" text="Visualize les revenue et expences" textFill="WHITE" />
+
+        <Button fx:id="exportButton" onAction="#handleExport" styleClass="btn-accent" text="Export CSV" textFill="WHITE" />
+
+        <Button fx:id="visualizeRepasButton" onAction="#handleVisualizeRepas" styleClass="btn-accent" text="Visualizer les repas" textFill="WHITE" />
+    </HBox>
+
+    </VBox>

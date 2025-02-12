@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="418.0" prefWidth="596.0" spacing="10" style="-fx-background-color: #850f36; -fx-padding: 20px;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ChatbotController">
+    <!-- Image au-dessus du TextArea -->
+    <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <!-- Chemin relatif vers l'image -->
+            <Image url="@/images/chatbot.jpg"/>
+
+
+        </image>
+    </ImageView>
+
+    <!-- Zone pour afficher les messages du chatbot -->
+    <TextArea fx:id="chatArea" editable="false" prefHeight="162.0" prefWidth="556.0" style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-border-width: 1px; -fx-padding: 10px; -fx-text-fill: #333;" wrapText="true" />
+
+    <!-- Champ pour que l'utilisateur puisse entrer sa question -->
+    <TextField fx:id="userInput" promptText="Posez une question..." style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #ccc; -fx-border-width: 1px; -fx-padding: 5px; -fx-text-fill: #333;" />
+
+    <!-- Bouton pour envoyer la question -->
+    <Button fx:id="sendButton" onAction="#handleSend" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Envoyer" />
+</VBox>

@@ -1,5 +1,6 @@
 package Services;
 
+import Entites.Reclamation;
 import Entites.Repas;
 import Utils.DataSource;
 
@@ -68,6 +69,7 @@ public class serviceRepas {
         }
     }
 
+
     public Repas getById(int id) {
         String sql = "SELECT * FROM repas WHERE `id` = ?";
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -111,6 +113,29 @@ public class serviceRepas {
             }
         } catch (SQLException e) {
             System.err.println("Erreur lors de la récupération des repas : " + e.getMessage());
+            e.printStackTrace();
+        }
+        return repasList;
+    }
+    public List<Repas> chercherParNom(String nom) {
+        List<Repas> repasList = new ArrayList<>();
+        String sql = "SELECT * FROM repas WHERE `nom-repas` LIKE ?";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, "%" + nom + "%"); // Recherche partielle
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    repasList.add(new Repas(
+                            rs.getInt("id"),
+                            rs.getString("date"),
+                            rs.getString("nom-repas"),
+                            rs.getInt("nbrRepas"),
+                            rs.getDouble("cout")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la recherche des repas : " + e.getMessage());
             e.printStackTrace();
         }
         return repasList;

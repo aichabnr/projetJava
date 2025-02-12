@@ -16,7 +16,21 @@ public class MenuController {
 
     @FXML
     void openAnalyse(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Finance/FinanceManagement.fxml"));
+            Parent root = loader.load();
 
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Finance");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de la finance.");
+        }
     }
 
     @FXML
@@ -65,6 +79,20 @@ public class MenuController {
 
     @FXML
     void openRepas(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Repas/AfficherRepas.fxml"));
+            Parent root = loader.load();
 
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Reclamation");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de la repas.");
+        }
     }
 }

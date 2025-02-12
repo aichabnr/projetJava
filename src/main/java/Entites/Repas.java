@@ -1,7 +1,5 @@
 package Entites;
 
-import java.util.Date;
-
 public class Repas {
     private int id;
     private String date;
@@ -58,5 +56,10 @@ public class Repas {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+
+    public int getRevenue() {
+        return   this.nbRepas * 4 ;
     }
 }
