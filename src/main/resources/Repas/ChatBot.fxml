@@ -26,4 +26,15 @@
 
     <!-- Bouton pour envoyer la question -->
     <Button fx:id="sendButton" onAction="#handleSend" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Envoyer" />
+
+
+    <Button layoutX="550.0" layoutY="20.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: transparent;">
+        <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+                <image>
+                    <Image url="@../images/return.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
 </VBox>

@@ -6,12 +6,30 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Repas.AfficherRepasEtudiant">
+<HBox prefHeight="500.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Repas.AfficherRepasEtudiant">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <!-- Menu à gauche -->
+        <AnchorPane prefHeight="500.0" prefWidth="105.0" style="-fx-background-color: #5D001E;">
+            <children>
+                <ImageView fitHeight="38.0" fitWidth="66.0" layoutX="20.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/esprit.jpg" />
+                    </image>
+                </ImageView>
+                <Button layoutX="8.0" layoutY="121.0" onAction="#openReclamation" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Reclamation" />
+                <Button layoutX="9.0" layoutY="192.0" onAction="#openProposition" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Proposition" />
+                <Button layoutX="9.0" layoutY="263.0" onAction="#openRepas" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Repas" />
+            </children>
+        </AnchorPane>
+
+        <!-- Contenu principal -->
+        <AnchorPane prefHeight="500.0" prefWidth="814.0">
             <children>
                 <TitledPane fx:id="titledPane" animated="false" style="-fx-background-color: #ffffff;" styleClass="primary" text="Repas" textFill="#850f36" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
                     <content>
@@ -23,16 +41,13 @@
                                             <columns>
                                                 <TableColumn fx:id="colId" maxWidth="6000.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
                                                 <TableColumn fx:id="colNom" prefWidth="162.0" text="nom" />
-                                                <TableColumn fx:id="colDate" maxWidth="4000.0" minWidth="53.0" prefWidth="141.0" text="Date" />
-                                                <TableColumn fx:id="colCout" maxWidth="170.0" minWidth="100.0" prefWidth="110.0" text="Cout" />
-                                                <TableColumn fx:id="colNbr" maxWidth="198.0" minWidth="100.0" prefWidth="128.0" text="Nombre repas " />
+                                                <TableColumn fx:id="colDate" maxWidth="4000.0" minWidth="53.0" prefWidth="242.0" text="Date" />
+                                                <TableColumn fx:id="colCout" maxWidth="275.0" minWidth="100.0" prefWidth="174.0" text="Cout" />
+                                                <TableColumn fx:id="colNbr" maxWidth="342.0" minWidth="100.0" prefWidth="177.0" text="Nombre repas " />
                                             </columns>
                                         </TableView>
-                                        <ButtonBar layoutX="342.0" prefHeight="40.0" prefWidth="200.0">
-                                            <buttons>
-                                    <Button fx:id="chatbot" mnemonicParsing="false" onAction="#gochat" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="ChatBot" textFill="WHITE" />
-                                            </buttons>
-                                        </ButtonBar>
+                                        <ButtonBar layoutX="342.0" prefHeight="40.0" prefWidth="200.0" />
+                              <Button fx:id="chatbot" layoutX="651.0" layoutY="14.0" mnemonicParsing="false" onAction="#gochat" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="ChatBot" textFill="WHITE" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane layoutX="21.6" layoutY="20.8" prefHeight="51.0" prefWidth="563.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0">
@@ -40,15 +55,9 @@
                                         <AnchorPane prefHeight="33.0" prefWidth="771.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="2.0">
                                             <children>
                                                 <TextField fx:id="txtSearch" layoutY="2.0" prefHeight="33.0" prefWidth="407.0" promptText="Rechercher un repas..." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0" />
-                                                <Button fx:id="btnSearch" layoutX="695.0" layoutY="2.0" onAction="#searchRepas" style="-fx-background-color: #850f36; -fx-text-fill: white;" text="Rechercher" />
                                             </children>
                                         </AnchorPane>
-
-                                        <AnchorPane prefHeight="29.0" prefWidth="85.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
-                                 <children>
-                                                <Button fx:id="chercher" layoutX="22.0" layoutY="3.0" mnemonicParsing="false" onAction="#searchRepas" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="Chercher" textFill="WHITE" />
-                                 </children>
-                                        </AnchorPane>
+                                          <Button fx:id="chercher" layoutX="653.0" layoutY="6.0" mnemonicParsing="false" onAction="#searchRepas" prefHeight="26.0" prefWidth="104.0" style="-fx-background-color: #850f36;" text="Chercher" textFill="WHITE" />
                                     </children>
                                 </AnchorPane>
                             </children>
@@ -61,4 +70,5 @@
             </children>
         </AnchorPane>
     </children>
-</AnchorPane>
+</HBox>
+

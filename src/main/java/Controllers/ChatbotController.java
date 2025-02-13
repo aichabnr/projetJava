@@ -1,9 +1,15 @@
 package Controllers;
 
 import Utils.DataSource;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 
 import java.sql.*;
@@ -98,4 +104,26 @@ public class ChatbotController {
     public String getResponse(String userInput) {
         return responses.getOrDefault(userInput, "Désolé, je n'ai pas compris la question.");
     }
+
+
+    @FXML
+    private void retour(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Repas/AfficherRepasEtudiant.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            stage.setScene(scene);
+            stage.setTitle("Repas");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Erreur lors du chargement de la page Repas.");
+        }
+    }
+
+
 }

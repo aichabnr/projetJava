@@ -12,6 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox prefHeight="884.0" prefWidth="843.0" spacing="15" stylesheets="@modern-styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Finance.FinanceController">
 
     <padding>
@@ -69,4 +71,18 @@
         <Button fx:id="visualizeRepasButton" onAction="#handleVisualizeRepas" styleClass="btn-accent" text="Visualizer les repas" textFill="WHITE" />
     </HBox>
 
+
+
+
+
+    <!-- Bouton retour -->
+    <Button layoutX="550.0" layoutY="20.0" mnemonicParsing="false" onAction="#retour" style="-fx-background-color: transparent;">
+        <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+                <image>
+                    <Image url="@../images/return.png" />
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
     </VBox>

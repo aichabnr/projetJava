@@ -6,52 +6,62 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="473.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamations">
+<HBox prefHeight="500.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamations">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <!-- Menu à gauche -->
+      <AnchorPane prefHeight="500.0" prefWidth="105.0" style="-fx-background-color: #5D001E;">
          <children>
-            <TitledPane fx:id="titledPane" animated="false" style="-fx-background-color: #850f36;" styleClass="primary" text="Reclamations" textFill="#850f36" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
+            <ImageView fitHeight="38.0" fitWidth="66.0" layoutX="20.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/esprit.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="8.0" layoutY="121.0" onAction="#openReclamation" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Reclamation" />
+            <Button layoutX="9.0" layoutY="192.0" onAction="#openProposition" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Proposition" />
+            <Button layoutX="9.0" layoutY="263.0" onAction="#openRepas" prefHeight="56.0" prefWidth="89.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Repas" />
+         </children>
+      </AnchorPane>
+
+      <!-- Contenu principal -->
+      <AnchorPane prefHeight="500.0" prefWidth="814.0">
+         <children>
+            <TitledPane fx:id="titledPane" animated="false" text="Reclamations" textFill="#850f36" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <AnchorPane prefHeight="423.0" prefWidth="679.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                            <children>
                               <TableView fx:id="tableReclamation" prefHeight="412.0" prefWidth="995.0" style="-fx-background-color: #ffffff;" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                                  <columns>
-                                    <TableColumn fx:id="colId" maxWidth="6000.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="ID" />
-                                    <TableColumn fx:id="colObjet" minWidth="53.0" prefWidth="118.0" text="Objet" />
-                                    <TableColumn fx:id="colconsomateur" minWidth="53.0" prefWidth="126.0" text="consomateur" />
+                                    <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                                    <TableColumn fx:id="colObjet" prefWidth="118.0" text="Objet" />
+                                    <TableColumn fx:id="colconsomateur" prefWidth="126.0" text="Consommateur" />
                                     <TableColumn fx:id="colDescription" prefWidth="206.0" text="Description" />
                                     <TableColumn fx:id="colDate" prefWidth="124.0" text="Date" />
-                                    <TableColumn fx:id="colUpdate" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Modifier" />
-                                    <TableColumn fx:id="colDelet" maxWidth="196.0" minWidth="50.0" prefWidth="94.0" text="Supprimer" />
+                                    <TableColumn fx:id="colUpdate" prefWidth="94.0" text="Modifier" />
+                                    <TableColumn fx:id="colDelet" prefWidth="94.0" text="Supprimer" />
                                  </columns>
                               </TableView>
                            </children>
                         </AnchorPane>
+
+                        <!-- Barre de recherche et bouton Ajouter -->
                         <AnchorPane prefHeight="51.0" prefWidth="896.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <AnchorPane prefHeight="33.0" prefWidth="771.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="125.0" AnchorPane.topAnchor="2.0">
-                                 <children>
-                                    <TextField fx:id="txtSearch" layoutX="22.0" prefHeight="33.0" prefWidth="543.0" promptText="Search" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="0.0" />
-                                    <Button fx:id="Chercher" layoutX="578.0" layoutY="3.0" mnemonicParsing="false" onAction="#chercher" style="-fx-background-color: #850f36;" text="Chercher" textFill="#f8f4f4" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="23.0" prefWidth="108.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="2.0">
-                                 <children>
-                                    <Button fx:id="btnAddReclamation" layoutY="3.0" mnemonicParsing="false" onAction="#addReclamation" style="-fx-background-color: #850f36;" text="Ajouter" textFill="#f8f4f4" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
-                                       <styleClass>
-                                          <String fx:value="action-btn" />
-                                          <String fx:value="success" />
-                                       </styleClass>
-                                       <graphic>
-                                       </graphic>
-                                    </Button>
-                                 </children>
-                              </AnchorPane>
+                              <TextField fx:id="txtSearch" layoutX="22.0" prefHeight="33.0" prefWidth="544.0" promptText="Search" AnchorPane.leftAnchor="22.0" AnchorPane.rightAnchor="212.0" />
+                              <Button fx:id="Chercher" layoutX="579.0" layoutY="4.0" mnemonicParsing="false" onAction="#chercher" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #850f36;" text="Chercher" textFill="#f8f4f4" />
+                              <Button fx:id="btnAddReclamation" layoutX="671.0" layoutY="5.0" mnemonicParsing="false" onAction="#addReclamation" prefHeight="25.0" prefWidth="89.0" style="-fx-background-color: #850f36;" text="Ajouter" textFill="#f8f4f4">
+                                 <styleClass>
+                                    <String fx:value="action-btn" />
+                                    <String fx:value="success" />
+                                 </styleClass>
+                              </Button>
                            </children>
                         </AnchorPane>
                      </children>
@@ -64,4 +74,4 @@
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</HBox>

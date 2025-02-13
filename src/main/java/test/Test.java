@@ -3,6 +3,7 @@ package test;
 import Utils.DataSource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -15,12 +16,12 @@ public class Test extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-          /////////////Admin
- FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu.fxml"));
-////Consomateur
-/////////FXMLLoader loader = new FXMLLoader(getClass().getResource("/menuConsumer.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamationsForAdmin.fxml"));
 
-            AnchorPane root = loader.load();
+          //  FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/afficherReclamations.fxml"));
+
+            // Charger sans forcer le type de conteneur
+            Parent root = loader.load();
 
             Scene scene = new Scene(root);
             primaryStage.setTitle("Ajouter Proposition");
@@ -30,6 +31,5 @@ public class Test extends Application {
             e.printStackTrace();
         }
     }
-
 
 }

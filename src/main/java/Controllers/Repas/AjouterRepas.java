@@ -19,7 +19,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 public class AjouterRepas {
-/*
+
     @FXML
     private DatePicker txtDate;
 
@@ -76,5 +76,8 @@ public class AjouterRepas {
             e.printStackTrace();
             System.err.println("Erreur lors du chargement de la page Repas.");
         }
-    }*/
+    }
+
+
+
 }

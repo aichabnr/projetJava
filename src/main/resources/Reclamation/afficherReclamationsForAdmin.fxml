@@ -6,12 +6,34 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamationsForAdmin">
+<HBox prefHeight="500.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.Reclamation.AfficherReclamationsForAdmin">
     <children>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <!-- Menu de navigation à gauche -->
+        <AnchorPane prefHeight="568.0" prefWidth="120.0" style="-fx-background-color: #5D001E;">
+            <children>
+                <Button layoutX="8.0" layoutY="101.0" onAction="#openReclamation" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Reclamation" />
+                <Button layoutX="8.0" layoutY="366.0" onAction="#openProposition" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Proposition" />
+                <Button layoutX="9.0" layoutY="168.0" onAction="#openPersonnes" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Personne" />
+                <Button layoutX="9.0" layoutY="235.0" onAction="#openAbonnement" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Abonnement" />
+                <Button layoutX="9.0" layoutY="302.0" onAction="#openAnalyse" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Analyse" />
+                <Button layoutX="8.0" layoutY="431.0" onAction="#openRepas" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: #E3AFBC; -fx-text-fill: #5D001E; -fx-font-weight: bold;" text="Repas" />
+                <ImageView fitHeight="56.0" fitWidth="85.0" layoutX="16.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/esprit.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+
+
+    <AnchorPane prefHeight="500.0" prefWidth="814.0">
             <children>
                 <TitledPane fx:id="titledPane" animated="false" style="-fx-background-color: #850f36;" styleClass="primary" text="Reclamations" textFill="#850f36" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="5.0">
                     <content>
@@ -60,6 +82,7 @@
                     </font>
                 </TitledPane>
             </children>
-        </AnchorPane>
+    </AnchorPane>
     </children>
-</AnchorPane>
+
+        </HBox>

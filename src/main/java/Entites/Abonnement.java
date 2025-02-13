@@ -2,24 +2,63 @@ package Entites;
 
 import java.util.Date;
 
+
+
 public class Abonnement {
 
     private int id;
     private Date dateDebut;
     private Date dateFin;
     private double solde;
-    private TPA type;
     private int idConsomateur;
-    public Abonnement() {
+    private String nomConsomateur;
+    private String prenomConsomateur;
+    public Abonnement(){
 
     }
-    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, TPA type, int idConsomateur) {
+
+    @Override
+    public String toString() {
+        return "Abonnement{" +
+                "id=" + id +
+                ", dateDebut=" + dateDebut +
+                ", dateFin=" + dateFin +
+                ", solde=" + solde +
+                ", idConsomateur=" + idConsomateur +
+                '}';
+    }
+
+    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, int idConsomateur) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.solde = solde;
-        this.type = type;
         this.idConsomateur = idConsomateur;
+    }
+
+    public Abonnement(int id, Date dateDebut, Date dateFin, double solde, String nomConsomateur, String prenomConsomateur) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.solde = solde;
+        this.nomConsomateur = nomConsomateur;
+        this.prenomConsomateur = prenomConsomateur;
+    }
+
+    public String getNomConsomateur() {
+        return nomConsomateur;
+    }
+
+    public void setNomConsomateur(String nomConsomateur) {
+        this.nomConsomateur = nomConsomateur;
+    }
+
+    public String getPrenomConsomateur() {
+        return prenomConsomateur;
+    }
+
+    public void setPrenomConsomateur(String prenomConsomateur) {
+        this.prenomConsomateur = prenomConsomateur;
     }
 
     public int getId() {
@@ -52,14 +91,6 @@ public class Abonnement {
 
     public void setSolde(double solde) {
         this.solde = solde;
-    }
-
-    public TPA getType() {
-        return type;
-    }
-
-    public void setType(TPA type) {
-        this.type = type;
     }
 
     public int getIdConsomateur() {
