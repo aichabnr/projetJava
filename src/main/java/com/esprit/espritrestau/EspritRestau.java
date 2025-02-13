@@ -14,7 +14,7 @@ public class EspritRestau  extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-     FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("consommateur.fxml"));
+     FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("Dashboard.fxml"));
   //  FXMLLoader fxmlLoader = new FXMLLoader(EspritRestau.class.getResource("employee.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("gestion consommateur");

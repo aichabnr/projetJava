@@ -229,4 +229,34 @@ public class PersonneService {
             return personne;
         }
     }
+
+
+
+
+
+
+
+////////////////////dashboard////////////////////////////////
+    public long getTotalConsumers() throws SQLException {
+        String query = "SELECT COUNT(*) FROM consommateur";
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+            return 0;
+        }
+    }
+
+
+    public long getTotalEmployees() throws SQLException {
+        String query = "SELECT COUNT(*) FROM employee";
+        try (Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+            return 0;
+        }
+    }
 }
