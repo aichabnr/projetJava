@@ -386,9 +386,15 @@ public class LignePresenceController {
         consommateurComboBox.getItems().setAll(consommateurList);
     }
 
+
     private void loadPresenceData() {
-        List<Presence> presenceList = service.getAll();
-        presenceTableView.getItems().setAll(presenceList);
+        try{
+            List<Presence> presenceList = service.getAll();
+            presenceTableView.getItems().setAll(presenceList);
+
+        }catch (RuntimeException e){
+            throw new RuntimeException(e) ;
+        }
     }
 
     private void adjustColumnWidths() {
