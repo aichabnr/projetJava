@@ -1,0 +1,90 @@
+#loginLayout{
+    -fx-background-color:#333;
+}
+#txtuser{
+    -fx-background-color: #f3f6f4;
+    -fx-background-radius: 10px;
+
+}
+#statistics{
+    -fx-background-color:#968a8b;
+}
+
+#hbox{
+    -fx-background-color: #9faba2;
+}
+#txtpassword{
+    -fx-background-color: #f3f6f4;
+    -fx-background-radius: 10px;
+}
+#slideLeft{
+    -fx-background-color:#333;
+}
+#logout{
+    -fx-background-color: #f3091c;
+    -fx-background-radius: 50px;
+
+}
+#Meals{
+
+    -fx-background-color:#3f444c;
+}
+#mmid{
+    -fx-background-color:#79717c;
+    -fx-background-radius: 10px;
+
+}
+#tableview{
+
+    -fx-background-color:#686f88;
+}
+#editpane{
+
+    -fx-background-color:#5f6274;
+}
+#AnchorPane,#gridpane{
+    -fx-background-color:#5fa591;
+
+}
+
+
+/* style.css */
+.root {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-base: #f4f4f4;
+    -fx-background-color: #ffffff;
+}
+
+.header-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-alignment: center;
+    -fx-padding: 10px;
+}
+
+TextField, PasswordField {
+    -fx-pref-width: 200px;
+    -fx-margin: 10px;
+}
+
+Button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-font-weight: bold;
+    -fx-margin: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #45a049;
+}
+
+ListView {
+    -fx-pref-height: 200px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+    -fx-background-color: #f9f9f9;
+}

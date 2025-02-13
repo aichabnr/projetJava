@@ -1,0 +1,107 @@
+/* Root Style */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-base: #f9f9f9;
+    -fx-background: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+/* Button Style */
+.button {
+    -fx-background-color: #802645;
+    -fx-text-fill: white;
+    -fx-border-color: #6e1f3a;
+    -fx-border-width: 1px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+#modifybutton {
+    -fx-background-color: #802645;
+    -fx-text-fill: white;
+    -fx-border-color: #6e1f3a;
+}
+
+.button:hover {
+    -fx-background-color: #6e1f3a;
+}
+
+.button:pressed {
+    -fx-background-color: #5a1830;
+}
+
+/* ComboBox Style */
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d1d1;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #333333;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+/* TableView Style */
+.table-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d1d1d1;
+    -fx-table-cell-border-color: #eaeaea;
+    -fx-padding: 10px;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f0f0f0;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #cce7ff;
+    -fx-text-fill: #1a73e8;
+}
+
+.update-dialog {
+    -fx-background-color: #ffffff;
+}
+
+.update-dialog .label {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+}
+
+.update-dialog .combo-box, .update-dialog .date-picker {
+    -fx-pref-height: 35px;
+    -fx-font-size: 14px;
+}
+
+/* Styling for rectangleX with white border */
+.rectangleX {
+    -fx-background-color: #802645;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px;
+}
