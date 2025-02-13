@@ -1,18 +1,20 @@
 package com.esprit.espritrestau.entities;
 
-import java.sql.Date; // Use java.sql.Date
+import java.util.Date;
+import com.esprit.espritrestau.entities.TPA ;
+
 
 public class Abonnement {
 
     private int id;
-    private Date dateDebut; // Change to java.sql.Date
-    private Date dateFin;   // Change to java.sql.Date
+    private Date dateDebut;
+    private Date dateFin;
     private double solde;
     private int idConsomateur;
     private String nomConsomateur;
     private String prenomConsomateur;
+    public Abonnement(){
 
-    public Abonnement() {
     }
 
     @Override
@@ -67,16 +69,16 @@ public class Abonnement {
         this.id = id;
     }
 
-    public Date getDateDebut() { // Change return type
-        return dateDebut; // No change needed here
+    public Date getDateDebut() {
+        return dateDebut;
     }
 
     public void setDateDebut(Date dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() { // Change return type
-        return dateFin; // No change needed here
+    public Date getDateFin() {
+        return dateFin;
     }
 
     public void setDateFin(Date dateFin) {

@@ -27,7 +27,7 @@ public class ConsommateurService implements IConsommateur<Consommateur> {
                         resultSet.getInt("id"),
                         resultSet.getString("nom"),
                         resultSet.getString("prenom"),
-                        resultSet.getString("tel"),
+                        resultSet.getInt("tel"),
                         resultSet.getString("password"),
                         TPA.valueOf(resultSet.getString("type")) // Assurez-vous que le type est bien récupéré
                 );
