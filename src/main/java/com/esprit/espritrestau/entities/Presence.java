@@ -1,6 +1,6 @@
 package com.esprit.espritrestau.entities;
 
-import java.util.Date;
+import java.sql.Date ;
 
 public class Presence {
     private int id;

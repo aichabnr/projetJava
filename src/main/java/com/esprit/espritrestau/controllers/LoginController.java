@@ -47,7 +47,7 @@ public class LoginController {
 
     @FXML
     void authenticateUser(ActionEvent event) {
-        // Remove error styles and clear error label
+
         emailField.getStyleClass().remove("error-border");
         passwordField.getStyleClass().remove("error-border");
         errorLabel.setVisible(false);
@@ -90,8 +90,7 @@ public class LoginController {
 
         if (authServices.login(email, password, role)) {
             try {
-                // Redirect to abonnement.fxml
-                FXMLLoader loader = new FXMLLoader(EspritRestau.class.getResource("abonnement.fxml"));
+                FXMLLoader loader = new FXMLLoader(EspritRestau.class.getResource("ligne_presence.fxml"));
                 Parent root = loader.load();
 
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
