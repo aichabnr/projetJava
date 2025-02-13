@@ -302,7 +302,7 @@ public class AbonnementController {
                     showAlert("Success", "Modification enregistrée avec succès.");
                     return updatedAbonnement;
                 } catch (Exception e) {
-                    showAlert("Error", "Erreur lors de la mise à jour de l'abonnement.");
+                    showAlert("Errorr", "Erreur lors de la mise à jour de l'abonnement.");
                 }
             }
             return null;
